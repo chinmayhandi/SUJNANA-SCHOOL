@@ -2574,6 +2574,40 @@ header {
     height: 480px;
   }
   
+  /* Fix for wide staff group photo in hero slider */
+  .hero-slide.staff-slide {
+    background-image: none !important;
+    background-color: #000;
+  }
+  
+  .hero-slide.staff-slide::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/staff-group.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.4);
+    z-index: 1;
+  }
+  
+  .hero-slide.staff-slide::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../images/staff-group.jpeg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 2;
+  }
+  
   .home-hero h1 {
     font-size: 1.8rem;
   }
