@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Gallery | Sujnana National Public School</title>
+  <meta name="description" content="Relive the best moments of Sujnana National Public School. View photos and video highlights of school celebrations, sports, and academics.">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Common Header -->
+  <header>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-info">
+          <a href="mailto:sujnanaschool@gmail.com"><i class="far fa-envelope"></i> sujnanaschool@gmail.com</a>
+          <a href="tel:+919845985993"><i class="fas fa-phone-alt"></i> +91 98459 85993</a>
+        </div>
+        <div class="top-socials">
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar">
+          <!-- Logo & Brand Info -->
+          <a href="index.html" class="logo-container">
+            <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="logo-img">
+            <div class="logo-text">
+              <span class="trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <span class="school-name">SUJNANA NATIONAL PUBLIC SCHOOL</span>
+            </div>
+          </a>
+
+          <!-- Navigation Links -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+            <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+            <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <!-- Enquiry Now CTA -->
+          <div class="nav-cta">
+            <a href="contact.html" class="btn-yellow">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+          </div>
+
+          <!-- Hamburger Button for Mobile -->
+          <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav">
+    <div class="mobile-menu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="about.html" class="mobile-link">About Us</a>
+      <a href="admissions.html" class="mobile-link">Admissions</a>
+      <a href="facilities.html" class="mobile-link">Facilities</a>
+      <a href="gallery.html" class="mobile-link">Gallery</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </div>
+    <a href="contact.html" class="btn-yellow" style="width: 100%; justify-content: center; margin-top: 20px;">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner" style="background-image: url('images/IMG_0387.JPG');">
+    <div class="container">
+      <span class="hero-banner-subtitle">MOMENTS THAT INSPIRE, MEMORIES THAT LAST FOREVER</span>
+      <h1 class="hero-banner-title">GALLERY</h1>
+    </div>
+  </section>
+
+  <!-- Gallery Main Section -->
+  <section class="gallery-section">
+    <div class="container">
+      <!-- Media Tabs -->
+      <div class="gallery-tabs">
+        <button id="tab-photos" class="gallery-tab-btn active"><i class="far fa-images"></i> Photos</button>
+        <button id="tab-videos" class="gallery-tab-btn"><i class="far fa-play-circle"></i> Videos</button>
+      </div>
+
+      <!-- Photos Tab Content -->
+      <div class="photos-tab-content" id="photos">
+        <!-- Category Filters -->
+        <div class="gallery-filters">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="events">Events</button>
+          <button class="filter-btn" data-filter="academics">Academics</button>
+          <button class="filter-btn" data-filter="sports">Sports</button>
+          <button class="filter-btn" data-filter="activities">Activities</button>
+          <button class="filter-btn" data-filter="celebrations">Celebrations</button>
+          <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+        </div>
+
+        <!-- Photo Grid (8 items) -->
+        <div class="photo-gallery-grid">
+          <!-- Item 1 -->
+          <div class="gallery-item" data-category="infrastructure">
+            <img src="images/gallery-1.jpg" alt="SNPS Campus Building">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Infrastructure</span>
+              <h4 class="gallery-item-title">School Main Campus Frontage</h4>
+            </div>
+          </div>
+          <!-- Item 2 -->
+          <div class="gallery-item" data-category="academics">
+            <img src="images/gallery-2.jpg" alt="Sci-Quest Exhibition">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Academics</span>
+              <h4 class="gallery-item-title">Annual Sci-Quest Projects</h4>
+            </div>
+          </div>
+          <!-- Item 3 -->
+          <div class="gallery-item" data-category="sports">
+            <img src="images/gallery-3.jpg" alt="Running Race track">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Sports</span>
+              <h4 class="gallery-item-title">100m Track Athletics Meet</h4>
+            </div>
+          </div>
+          <!-- Item 4 -->
+          <div class="gallery-item" data-category="celebrations">
+            <img src="images/gallery-4.jpg" alt="Independence Day Celebrations">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Celebrations</span>
+              <h4 class="gallery-item-title">Flag Hoisting Ceremony</h4>
+            </div>
+          </div>
+          <!-- Item 5 -->
+          <div class="gallery-item" data-category="activities">
+            <img src="images/gallery-5.jpg" alt="Clay Modelling session">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Activities</span>
+              <h4 class="gallery-item-title">Clay Arts & Crafts session</h4>
+            </div>
+          </div>
+          <!-- Item 6 -->
+          <div class="gallery-item" data-category="events">
+            <img src="images/gallery-6.jpg" alt="Annual Gathering dance">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Events</span>
+              <h4 class="gallery-item-title">Cultural Dance performance</h4>
+            </div>
+          </div>
+          <!-- Item 7 -->
+          <div class="gallery-item" data-category="sports">
+            <img src="images/gallery-7.jpg" alt="Volleyball matches">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Sports</span>
+              <h4 class="gallery-item-title">Volleyball Tournament Finals</h4>
+            </div>
+          </div>
+          <!-- Item 8 -->
+          <div class="gallery-item" data-category="infrastructure">
+            <img src="images/gallery-8.jpg" alt="School Smart Classrooms">
+            <div class="gallery-overlay">
+              <span class="gallery-item-category">Infrastructure</span>
+              <h4 class="gallery-item-title">Modern Digital Classroom</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-cta">
+          <button class="btn-primary" onclick="alert('All photos loaded. Additional pictures will be added periodically.');">View More Photos <i class="fas fa-spinner"></i></button>
+        </div>
+      </div>
+
+      <!-- Videos Tab Content (Rendered dynamically by JavaScript data structure) -->
+      <div class="videos-tab-content" id="videos">
+        <div id="video-gallery-container" class="video-gallery-grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="gallery-cta">
+          <button class="btn-primary" onclick="alert('All video archives loaded.');">View More Videos <i class="fas fa-spinner"></i></button>
+        </div>
+      </div>
+
+      <!-- CTA banner below gallery -->
+      <div class="cta-banner" style="margin-top: 50px;">
+        <h3>Relive the best school moments!</h3>
+        <p>Browse through our academic files, co-curricular highlights, and volleyball championship records.</p>
+        <a href="contact.html" class="btn-yellow">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal overlay -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+      <button id="lightbox-close" class="lightbox-close" aria-label="Close Lightbox">&times;</button>
+      <img id="lightbox-img" src="" alt="Popup media" class="lightbox-img">
+      <video id="lightbox-video" src="" controls class="lightbox-video"></video>
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Common Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col-about">
+          <div class="footer-logo-container">
+            <img src="images/logo.jpeg" alt="SNPS Logo" class="footer-logo-img">
+            <div>
+              <span class="footer-trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <h4 class="footer-school-name">SUJNANA NATIONAL PUBLIC SCHOOL</h4>
+            </div>
+          </div>
+          <p class="footer-tagline">Nurturing creative, critical thinking and emotional intelligence in a safe, inspiring environment since inception.</p>
+          <div class="footer-socials">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> About Us</a></li>
+            <li><a href="admissions.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
+            <li><a href="facilities.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Gallery</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="admissions.html#process"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Admission Process</a></li>
+            <li><a href="about.html#principal"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Principal's Desk</a></li>
+            <li><a href="about.html#team"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Dedicated Staff</a></li>
+            <li><a href="gallery.html#photos"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Photo Album</a></li>
+            <li><a href="contact.html#map"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Google Location</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">School Contact</h4>
+          <div class="footer-contact-info">
+            <div class="footer-contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Sujnana National Public School campus, Muddebihal Road, Bagalkot District, Karnataka, India.</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 98459 85993<br>+91 96327 65550</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="far fa-envelope"></i>
+              <span>sujnanaschool@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shri Yalaguresh Educational Trust (R).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Widget -->
+  <a href="https://wa.me/919845985993" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

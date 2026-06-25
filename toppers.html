@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSLC Toppers | Sujnana National Public School</title>
+  <meta name="description" content="View the complete list of SSLC toppers by year at Sujnana National Public School. Managed by Shri Yalaguresh Educational Trust (R).">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Common Header -->
+  <header class="no-print">
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-info">
+          <a href="mailto:sujnanaschool@gmail.com"><i class="far fa-envelope"></i> sujnanaschool@gmail.com</a>
+          <a href="tel:+919845985993"><i class="fas fa-phone-alt"></i> +91 98459 85993</a>
+        </div>
+        <div class="top-socials">
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar">
+          <!-- Logo & Brand Info -->
+          <a href="index.html" class="logo-container">
+            <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="logo-img">
+            <div class="logo-text">
+              <span class="trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <span class="school-name">SUJNANA NATIONAL PUBLIC SCHOOL</span>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Menu -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+            <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+            <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <!-- Enquiry Now CTA -->
+          <div class="nav-cta">
+            <a href="contact.html" class="btn-yellow">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+          </div>
+
+          <!-- Hamburger Button for Mobile -->
+          <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay no-print"></div>
+  <div class="mobile-nav no-print">
+    <div class="mobile-menu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="about.html" class="mobile-link">About Us</a>
+      <a href="admissions.html" class="mobile-link">Admissions</a>
+      <a href="facilities.html" class="mobile-link">Facilities</a>
+      <a href="gallery.html" class="mobile-link">Gallery</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </div>
+    <a href="contact.html" class="btn-yellow" style="width: 100%; justify-content: center; margin-top: 20px;">Enquiry
+      Now <i class="fas fa-paper-plane"></i></a>
+  </div>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner no-print" style="background-image: url('images/IMG_0387.JPG');">
+    <div class="container">
+      <span class="hero-banner-subtitle">ACADEMIC ACHIEVEMENTS</span>
+      <h1 class="hero-banner-title">SSLC TOPPERS – ALL YEARS</h1>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <section class="toppers-page-section">
+    <div class="container">
+      
+      <!-- Back, Search, and Action Toolbar -->
+      <div class="toppers-toolbar no-print">
+        <a href="index.html" class="btn-back">
+          <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        <div class="toppers-search-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="topper-search" placeholder="Search topper by name...">
+        </div>
+        <button id="btn-export-pdf" class="btn-pdf">
+          <i class="fas fa-file-pdf"></i> Export PDF
+        </button>
+      </div>
+
+      <!-- Year Filter Tabs -->
+      <div class="toppers-tabs-container no-print">
+        <div class="toppers-tabs">
+          <button class="topper-tab active" data-filter="all">All Years</button>
+          <button class="topper-tab" data-filter="2024-25">2024–25</button>
+          <button class="topper-tab" data-filter="2023-24">2023–24</button>
+          <button class="topper-tab" data-filter="2022-23">2022–23</button>
+          <button class="topper-tab" data-filter="2021-22">2021–22</button>
+          <button class="topper-tab" data-filter="2020-21">2020–21</button>
+          <button class="topper-tab" data-filter="2019-20">2019–20</button>
+        </div>
+      </div>
+
+      <!-- Print Title (Only visible in PDF/Print) -->
+      <div class="print-header-container">
+        <h2>Sujnana National Public School</h2>
+        <p class="trust-name">Shri Yalaguresh Educational Trust (R)</p>
+        <p class="print-doc-title">SSLC TOPPERS – HISTORICAL RECORD</p>
+      </div>
+
+      <!-- Toppers List Grid -->
+      <div class="toppers-list-wrapper">
+        
+        <!-- Year Group 2024-25 -->
+        <div class="topper-year-group" data-year="2024-25">
+          <h3 class="year-heading">Academic Year 2024–25</h3>
+          <div class="topper-list">
+            <div class="topper-row-card">
+              <span class="topper-rank rank-1">Rank 1</span>
+              <span class="topper-name">Ananya Patil</span>
+              <span class="topper-pct">98.6%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-2">Rank 2</span>
+              <span class="topper-name">Rahul Kulkarni</span>
+              <span class="topper-pct">97.8%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-3">Rank 3</span>
+              <span class="topper-name">Priyanka Joshi</span>
+              <span class="topper-pct">97.2%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 4</span>
+              <span class="topper-name">Aditya Desai</span>
+              <span class="topper-pct">96.8%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 5</span>
+              <span class="topper-name">Sneha Biradar</span>
+              <span class="topper-pct">96.5%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year Group 2023-24 -->
+        <div class="topper-year-group" data-year="2023-24">
+          <h3 class="year-heading">Academic Year 2023–24</h3>
+          <div class="topper-list">
+            <div class="topper-row-card">
+              <span class="topper-rank rank-1">Rank 1</span>
+              <span class="topper-name">Rohan Hegde</span>
+              <span class="topper-pct">98.1%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-2">Rank 2</span>
+              <span class="topper-name">Kirti Patil</span>
+              <span class="topper-pct">97.6%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-3">Rank 3</span>
+              <span class="topper-name">Amit Joshi</span>
+              <span class="topper-pct">97.0%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 4</span>
+              <span class="topper-name">Pooja Pujar</span>
+              <span class="topper-pct">96.4%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 5</span>
+              <span class="topper-name">Vinayak Patil</span>
+              <span class="topper-pct">95.8%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year Group 2022-23 -->
+        <div class="topper-year-group" data-year="2022-23">
+          <h3 class="year-heading">Academic Year 2022–23</h3>
+          <div class="topper-list">
+            <div class="topper-row-card">
+              <span class="topper-rank rank-1">Rank 1</span>
+              <span class="topper-name">Shruti Kulkarni</span>
+              <span class="topper-pct">97.8%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-2">Rank 2</span>
+              <span class="topper-name">Ganesh Nadiger</span>
+              <span class="topper-pct">97.4%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-3">Rank 3</span>
+              <span class="topper-name">Aishwarya Rao</span>
+              <span class="topper-pct">96.9%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 4</span>
+              <span class="topper-name">Abhishek Badiger</span>
+              <span class="topper-pct">96.2%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 5</span>
+              <span class="topper-name">Shashi Deshpande</span>
+              <span class="topper-pct">95.5%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year Group 2021-22 -->
+        <div class="topper-year-group" data-year="2021-22">
+          <h3 class="year-heading">Academic Year 2021–22</h3>
+          <div class="topper-list">
+            <div class="topper-row-card">
+              <span class="topper-rank rank-1">Rank 1</span>
+              <span class="topper-name">Veena Patil</span>
+              <span class="topper-pct">98.2%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-2">Rank 2</span>
+              <span class="topper-name">Chetan Shinde</span>
+              <span class="topper-pct">97.5%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-3">Rank 3</span>
+              <span class="topper-name">Deepa Naik</span>
+              <span class="topper-pct">97.1%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 4</span>
+              <span class="topper-name">Ritesh Patil</span>
+              <span class="topper-pct">96.6%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 5</span>
+              <span class="topper-name">Preeti Kudri</span>
+              <span class="topper-pct">96.0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year Group 2020-21 -->
+        <div class="topper-year-group" data-year="2020-21">
+          <h3 class="year-heading">Academic Year 2020–21</h3>
+          <div class="topper-list">
+            <div class="topper-row-card">
+              <span class="topper-rank rank-1">Rank 1</span>
+              <span class="topper-name">Nikhil Deshpande</span>
+              <span class="topper-pct">97.9%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-2">Rank 2</span>
+              <span class="topper-name">Laxmi Patil</span>
+              <span class="topper-pct">97.3%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-3">Rank 3</span>
+              <span class="topper-name">Santosh Kamat</span>
+              <span class="topper-pct">96.8%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 4</span>
+              <span class="topper-name">Sahana Hegde</span>
+              <span class="topper-pct">96.1%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 5</span>
+              <span class="topper-name">Manoj Angadi</span>
+              <span class="topper-pct">95.6%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Year Group 2019-20 -->
+        <div class="topper-year-group" data-year="2019-20">
+          <h3 class="year-heading">Academic Year 2019–20</h3>
+          <div class="topper-list">
+            <div class="topper-row-card">
+              <span class="topper-rank rank-1">Rank 1</span>
+              <span class="topper-name">Raghavendra Joshi</span>
+              <span class="topper-pct">98.4%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-2">Rank 2</span>
+              <span class="topper-name">Soumya Patil</span>
+              <span class="topper-pct">97.9%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-3">Rank 3</span>
+              <span class="topper-name">Mahesh Kulkarni</span>
+              <span class="topper-pct">97.3%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 4</span>
+              <span class="topper-name">Shraddha Desai</span>
+              <span class="topper-pct">96.7%</span>
+            </div>
+            <div class="topper-row-card">
+              <span class="topper-rank rank-other">Rank 5</span>
+              <span class="topper-name">Kiran Nadgir</span>
+              <span class="topper-pct">96.2%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- No Results Msg -->
+        <div class="toppers-no-results">
+          <i class="fas fa-info-circle"></i>
+          <p>No toppers found matching your search term.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="footer no-print">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1: About SNPS -->
+        <div class="footer-col-about">
+          <div class="footer-logo-container">
+            <img src="images/logo.jpeg" alt="SNPS Logo" class="footer-logo-img">
+            <div>
+              <span class="footer-trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <h4 class="footer-school-name">SUJNANA NATIONAL PUBLIC SCHOOL</h4>
+            </div>
+          </div>
+          <p class="footer-tagline">Nurturing creative, critical thinking and emotional intelligence in a safe,
+            inspiring environment since inception.</p>
+          <div class="footer-socials">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+                Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+                About Us</a></li>
+            <li><a href="admissions.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
+            <li><a href="facilities.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Gallery</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Accreditations -->
+        <div>
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="admissions.html#process"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Admission Process</a></li>
+            <li><a href="about.html#principal"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Principal's Desk</a></li>
+            <li><a href="about.html#team"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Dedicated Staff</a></li>
+            <li><a href="gallery.html#photos"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Photo Album</a></li>
+            <li><a href="contact.html#map"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Google Location</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Details -->
+        <div>
+          <h4 class="footer-col-title">School Contact</h4>
+          <div class="footer-contact-info">
+            <div class="footer-contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Sujnana National Public School campus, Muddebihal Road, Bagalkot District, Karnataka, India.</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 98459 85993<br>+91 96327 65550</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="far fa-envelope"></i>
+              <span>sujnanaschool@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shri Yalaguresh Educational Trust
+          (R).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Widget -->
+  <a href="https://wa.me/919845985993" class="whatsapp-float no-print" target="_blank" aria-label="WhatsApp Contact">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top no-print" aria-label="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="js/script.js"></script>
+</body>
+</html>

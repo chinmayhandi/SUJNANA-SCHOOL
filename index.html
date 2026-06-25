@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sujnana National Public School | Home</title>
+  <meta name="description"
+    content="Welcome to Sujnana National Public School, managed by Shri Yalaguresh Educational Trust (R). Nurturing minds, shaping futures with modern educational facilities.">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Common Header -->
+  <header>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-info">
+          <a href="mailto:sujnanaschool@gmail.com"><i class="far fa-envelope"></i> sujnanaschool@gmail.com</a>
+          <a href="tel:+919845985993"><i class="fas fa-phone-alt"></i> +91 98459 85993</a>
+        </div>
+        <div class="top-socials">
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar">
+          <!-- Logo & Brand Info -->
+          <a href="index.html" class="logo-container">
+            <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="logo-img">
+            <div class="logo-text">
+              <span class="trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <span class="school-name">SUJNANA NATIONAL PUBLIC SCHOOL</span>
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Menu -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="admissions.html" class="nav-link">Admissions</a></li>
+            <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+            <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <!-- Enquiry Now CTA -->
+          <div class="nav-cta">
+            <a href="contact.html" class="btn-yellow">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+          </div>
+
+          <!-- Hamburger Button for Mobile -->
+          <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav">
+    <div class="mobile-menu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="about.html" class="mobile-link">About Us</a>
+      <a href="admissions.html" class="mobile-link">Admissions</a>
+      <a href="facilities.html" class="mobile-link">Facilities</a>
+      <a href="gallery.html" class="mobile-link">Gallery</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </div>
+    <a href="contact.html" class="btn-yellow" style="width: 100%; justify-content: center; margin-top: 20px;">Enquiry
+      Now <i class="fas fa-paper-plane"></i></a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="home-hero">
+    <!-- Dark Blue Overlay on video and images -->
+    <div class="hero-overlay"></div>
+
+    <!-- Background Video -->
+    <video id="hero-video" class="hero-bg-video" autoplay muted playsinline>
+      <source src="https://res.cloudinary.com/dbq1w6izr/video/upload/v1782385374/IMG_9917_wzklvp.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <!-- Background Image Slider -->
+    <div class="hero-slider">
+      <div class="hero-slide" style="background-image: url('images/IMG_0387.JPG');">
+      </div>
+      <div class="hero-slide" style="background-image: url('images/chairman.JPG');"></div>
+      <div class="hero-slide" style="background-image: url('images/Prinicipal.JPG');"></div>
+      <div class="hero-slide" style="background-image: url('images/staff-group.jpeg');"></div>
+      <div class="hero-slide" style="background-image: url('images/ass.JPG');"></div>
+    </div>
+
+    <!-- Slider Navigation (Arrows and Dots) -->
+    <div class="hero-slider-nav">
+      <button class="hero-nav-arrow prev" aria-label="Previous Photo"><i class="fas fa-chevron-left"></i></button>
+      <div class="hero-slider-dots">
+        <span class="hero-dot active" data-index="0"></span>
+        <span class="hero-dot" data-index="1"></span>
+        <span class="hero-dot" data-index="2"></span>
+        <span class="hero-dot" data-index="3"></span>
+        <span class="hero-dot" data-index="4"></span>
+      </div>
+      <button class="hero-nav-arrow next" aria-label="Next Photo"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="container hero-content-container">
+      <span class="home-hero-badge">WELCOME TO</span>
+      <h1>SUJNANA NATIONAL,<br><span style="color: var(--yellow);">PUBLIC SCHOOL</span></h1>
+      <p>A safe, supportive and inspiring environment where every child learns, grows and excels.</p>
+      <a href="about.html" class="btn-yellow" style="font-size: 1.1rem; padding: 12px 30px;">Discover More <i
+          class="fas fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <div class="container">
+    <div class="stats">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-number">1200+</span>
+          <span class="stat-label">Students</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Qualified Faculty</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Years of Excellence</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Commitment</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number"><i class="fas fa-shield-alt"></i></span>
+          <span class="stat-label">Safe & Secure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SSLC Toppers 2024-25 -->
+  <section class="toppers">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <span class="section-subtitle">Academic Achievements</span>
+        <h2 class="section-title">SSLC Toppers 2024–25 (Top 5)</h2>
+      </div>
+
+      <div class="toppers-grid">
+        <!-- Topper 1 -->
+        <div class="topper-card">
+          <div class="topper-img-wrapper">
+            <img src="images/topper-1.jpg" alt="Topper 1" class="topper-img">
+          </div>
+          <div class="topper-info">
+            <span class="topper-rank">Rank 1</span>
+            <h3 class="topper-name">Ananya Patil</h3>
+            <p class="topper-percentage" style="color: var(--yellow);">98.6%</p>
+          </div>
+        </div>
+        <!-- Topper 2 -->
+        <div class="topper-card">
+          <div class="topper-img-wrapper">
+            <img src="images/topper-2.jpg" alt="Topper 2" class="topper-img">
+          </div>
+          <div class="topper-info">
+            <span class="topper-rank">Rank 2</span>
+            <h3 class="topper-name">Rahul Kulkarni</h3>
+            <p class="topper-percentage" style="color: var(--yellow);">97.8%</p>
+          </div>
+        </div>
+        <!-- Topper 3 -->
+        <div class="topper-card">
+          <div class="topper-img-wrapper">
+            <img src="images/topper-3.jpg" alt="Topper 3" class="topper-img">
+          </div>
+          <div class="topper-info">
+            <span class="topper-rank">Rank 3</span>
+            <h3 class="topper-name">Priyanka Joshi</h3>
+            <p class="topper-percentage" style="color: var(--yellow);">97.2%</p>
+          </div>
+        </div>
+        <!-- Topper 4 -->
+        <div class="topper-card">
+          <div class="topper-img-wrapper">
+            <img src="images/topper-4.jpg" alt="Topper 4" class="topper-img">
+          </div>
+          <div class="topper-info">
+            <span class="topper-rank">Rank 4</span>
+            <h3 class="topper-name">Aditya Desai</h3>
+            <p class="topper-percentage" style="color: var(--yellow);">96.8%</p>
+          </div>
+        </div>
+        <!-- Topper 5 -->
+        <div class="topper-card">
+          <div class="topper-img-wrapper">
+            <img src="images/topper-5.jpg" alt="Topper 5" class="topper-img">
+          </div>
+          <div class="topper-info">
+            <span class="topper-rank">Rank 5</span>
+            <h3 class="topper-name">Sneha Biradar</h3>
+            <p class="topper-percentage" style="color: var(--yellow);">96.5%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="toppers-cta">
+        <a href="toppers.html" class="btn-primary">View All Toppers <i class="fas fa-trophy"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest News & Events -->
+  <section class="news-events">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <span class="section-subtitle">Announcements</span>
+        <h2 class="section-title">Latest News & Events</h2>
+      </div>
+
+      <div class="events-list">
+        <!-- Event 1 -->
+        <div class="event-row">
+          <div class="event-date-box">
+            <span class="event-date-day">15</span>
+            <span class="event-date-month">Jun</span>
+          </div>
+          <img src="images/gallery-3.jpg" alt="Sports Meet" class="event-thumbnail">
+          <div class="event-details">
+            <h3 class="event-title">Annual Sports Day Meet 2026</h3>
+            <p class="event-desc">Students showcased their sporting talents in various track and field events with high
+              enthusiasm and school spirit. Winners were honored with gold medals.</p>
+          </div>
+        </div>
+        <!-- Event 2 -->
+        <div class="event-row">
+          <div class="event-date-box">
+            <span class="event-date-day">05</span>
+            <span class="event-date-month">Jun</span>
+          </div>
+          <img src="images/gallery-4.jpg" alt="Environment Day" class="event-thumbnail">
+          <div class="event-details">
+            <h3 class="event-title">World Environment Day Celebration</h3>
+            <p class="event-desc">The school Eco-club organized a tree plantation drive around the campus and awareness
+              speeches to encourage sustainable habits among students.</p>
+          </div>
+        </div>
+        <!-- Event 3 -->
+        <div class="event-row">
+          <div class="event-date-box">
+            <span class="event-date-day">28</span>
+            <span class="event-date-month">May</span>
+          </div>
+          <img src="images/gallery-2.jpg" alt="Science Exhibition" class="event-thumbnail">
+          <div class="event-details">
+            <h3 class="event-title">Science Exhibition 'Sujnana Sci-Quest'</h3>
+            <p class="event-desc">Young innovators from classes 6 to 10 demonstrated creative science models and
+              interactive experiments for visiting parents and guests.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="view-all-wrapper">
+        <a href="gallery.html" class="view-all-link">View All School Events <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proud Achievements -->
+  <section class="achievements">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <span class="section-subtitle">Our Pride</span>
+        <h2 class="section-title">Our Proud Achievements</h2>
+      </div>
+
+      <!-- Desktop Grid Layout -->
+      <div class="achievements-grid">
+        <!-- Card 1 -->
+        <div class="achievement-card">
+          <div class="achievement-img-wrapper">
+            <img src="images/achievement-1.jpg" alt="Sports Achievement" class="achievement-img">
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-icon-badge"><i class="fas fa-volleyball-ball"></i></div>
+            <h3 class="achievement-title">State Volleyball Champions</h3>
+            <p class="achievement-desc">Our sports team won first place in the state-level under-16 volleyball
+              tournament with excellent sportsmanship.</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="achievement-card">
+          <div class="achievement-img-wrapper">
+            <img src="images/achievement-2.jpg" alt="Academic Achievement" class="achievement-img">
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-icon-badge"><i class="fas fa-graduation-cap"></i></div>
+            <h3 class="achievement-title">100% Passing SSLC Results</h3>
+            <p class="achievement-desc">SNPS achieved 100% passing rates in the class 10 board exams with more than 20
+              students securing top distinctions.</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="achievement-card">
+          <div class="achievement-img-wrapper">
+            <img src="images/achievement-3.jpg" alt="Art Achievement" class="achievement-img">
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-icon-badge"><i class="fas fa-palette"></i></div>
+            <h3 class="achievement-title">National Painting Gold Medal</h3>
+            <p class="achievement-desc">Pranav K. from Grade 9 won the gold medal in the prestigious national painting
+              and talent competition.</p>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="achievement-card">
+          <div class="achievement-img-wrapper">
+            <img src="images/achievement-4.jpg" alt="Science Achievement" class="achievement-img">
+          </div>
+          <div class="achievement-content">
+            <div class="achievement-icon-badge"><i class="fas fa-desktop"></i></div>
+            <h3 class="achievement-title">District Cyber Olympiad</h3>
+            <p class="achievement-desc">Our students bagged top 3 ranks in the district information technology quiz
+              competition and Cyber Olympiad.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Slider Layout -->
+      <div class="achievement-mobile-slider">
+        <!-- Slide 1 -->
+        <div class="achievement-slide active">
+          <div class="achievement-card">
+            <div class="achievement-img-wrapper">
+              <img src="images/achievement-1.jpg" alt="Sports Achievement" class="achievement-img">
+            </div>
+            <div class="achievement-content">
+              <div class="achievement-icon-badge"><i class="fas fa-volleyball-ball"></i></div>
+              <h3 class="achievement-title">State Volleyball Champions</h3>
+              <p class="achievement-desc">Our sports team won first place in the state-level under-16 volleyball
+                tournament with excellent sportsmanship.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="achievement-slide">
+          <div class="achievement-card">
+            <div class="achievement-img-wrapper">
+              <img src="images/achievement-2.jpg" alt="Academic Achievement" class="achievement-img">
+            </div>
+            <div class="achievement-content">
+              <div class="achievement-icon-badge"><i class="fas fa-graduation-cap"></i></div>
+              <h3 class="achievement-title">100% Passing SSLC Results</h3>
+              <p class="achievement-desc">SNPS achieved 100% passing rates in the class 10 board exams with more than 20
+                students securing top distinctions.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="achievement-slide">
+          <div class="achievement-card">
+            <div class="achievement-img-wrapper">
+              <img src="images/achievement-3.jpg" alt="Art Achievement" class="achievement-img">
+            </div>
+            <div class="achievement-content">
+              <div class="achievement-icon-badge"><i class="fas fa-palette"></i></div>
+              <h3 class="achievement-title">National Painting Gold Medal</h3>
+              <p class="achievement-desc">Pranav K. from Grade 9 won the gold medal in the prestigious national painting
+                and talent competition.</p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="achievement-slide">
+          <div class="achievement-card">
+            <div class="achievement-img-wrapper">
+              <img src="images/achievement-4.jpg" alt="Science Achievement" class="achievement-img">
+            </div>
+            <div class="achievement-content">
+              <div class="achievement-icon-badge"><i class="fas fa-desktop"></i></div>
+              <h3 class="achievement-title">District Cyber Olympiad</h3>
+              <p class="achievement-desc">Our students bagged top 3 ranks in the district information technology quiz
+                competition and Cyber Olympiad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-controls">
+          <button class="slider-dot achievement-dot active"></button>
+          <button class="slider-dot achievement-dot"></button>
+          <button class="slider-dot achievement-dot"></button>
+          <button class="slider-dot achievement-dot"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our School Leadership & Community -->
+  <section class="leadership-community-section fade-up-reveal">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <span class="section-subtitle">Leadership & Faculty</span>
+        <h2 class="section-title">Our School Leadership & Community</h2>
+      </div>
+
+      <div class="leadership-stack">
+        
+        <!-- 1. About Sujnana National Public School -->
+        <div class="leadership-block text-left-img-right">
+          <div class="leadership-block-content">
+            <h3 class="leadership-block-title">About Sujnana National Public School</h3>
+            <p class="leadership-block-para">Sujnana National Public School is dedicated to nurturing young minds through academic excellence, values, discipline, innovation, and holistic development. We aim to create confident learners and responsible future leaders in a safe and inspiring environment.</p>
+            <a href="about.html" class="btn-yellow-sm">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="leadership-block-img">
+            <img src="images/hero-school.jpg" alt="Sujnana National Public School Campus" class="leadership-img">
+          </div>
+        </div>
+
+        <!-- 2. Principal's Message -->
+        <div class="leadership-block img-left-text-right">
+          <div class="leadership-block-img">
+            <img src="images/Prinicipal.JPG" alt="Principal of Sujnana National Public School" class="leadership-img">
+          </div>
+          <div class="leadership-block-content">
+            <h3 class="leadership-block-title">Principal’s Message</h3>
+            <p class="leadership-block-para">Welcome to Sujnana National Public School. Our mission is to empower students through knowledge, values, leadership, and lifelong learning. We encourage every child to explore, achieve, and become their best.</p>
+            <span class="leadership-block-name">Principal Name</span>
+            <a href="about.html#principal" class="btn-yellow-sm">Read Full Message <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- 3. Chairman's Message -->
+        <div class="leadership-block img-left-text-right">
+          <div class="leadership-block-img">
+            <img src="images/chairman.JPG" alt="Chairman of Shri Yalaguresh Educational Trust" class="leadership-img">
+          </div>
+          <div class="leadership-block-content">
+            <h3 class="leadership-block-title">Chairman’s Message</h3>
+            <p class="leadership-block-para">At Sujnana Trust, we believe education transforms lives. Our commitment is to provide quality education and create opportunities for every student to succeed.</p>
+            <span class="leadership-block-name">Chairman Name</span>
+            <a href="about.html#chairman" class="btn-yellow-sm">View Message <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- 4. Our Dedicated Faculty -->
+        <div class="leadership-block-full">
+          <div class="leadership-block-full-img">
+            <img src="images/staff-group.jpeg" alt="Sujnana School Faculty Team" class="leadership-img-cover">
+          </div>
+          <div class="leadership-block-full-content">
+            <h3 class="leadership-block-title">Our Dedicated Faculty</h3>
+            <p class="leadership-block-para">Our experienced and passionate faculty work together to inspire curiosity, innovation, and excellence while supporting every student’s journey.</p>
+            <a href="about.html#team" class="btn-yellow-sm">Meet Faculty <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Facilities -->
+  <section class="facilities-home">
+    <div class="container">
+      <div class="section-title-wrapper">
+        <span class="section-subtitle">Campus Amenities</span>
+        <h2 class="section-title">Our Modern Facilities</h2>
+      </div>
+
+      <!-- Desktop Side-by-Side Grid (6 facilities) -->
+      <div class="facilities-desktop-grid">
+        <!-- Facility 1 -->
+        <div class="facility-card-home">
+          <img src="images/facility-1.jpg" alt="Smart Classrooms" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Smart Classrooms</h3>
+            <p class="facility-home-desc">Digital learning with interactive whiteboards and modern teaching aids to
+              engage students visually.</p>
+          </div>
+        </div>
+        <!-- Facility 2 -->
+        <div class="facility-card-home">
+          <img src="images/facility-2.jpg" alt="Science Laboratories" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Science Laboratories</h3>
+            <p class="facility-home-desc">Well-equipped Physics, Chemistry and Biology labs providing hands-on practical
+              experiment space.</p>
+          </div>
+        </div>
+        <!-- Facility 3 -->
+        <div class="facility-card-home">
+          <img src="images/facility-4.jpg" alt="Library" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Library</h3>
+            <p class="facility-home-desc">A vast collection of educational books, fiction, journals, and digital
+              reference resources.</p>
+          </div>
+        </div>
+        <!-- Facility 4 -->
+        <div class="facility-card-home">
+          <img src="images/facility-3.jpg" alt="Computer Lab" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Computer Lab</h3>
+            <p class="facility-home-desc">High-end computers with latest software modules and high-speed safe internet
+              access.</p>
+          </div>
+        </div>
+        <!-- Facility 5 -->
+        <div class="facility-card-home">
+          <img src="images/facility-5.jpg" alt="Sports Complex" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Sports Complex</h3>
+            <p class="facility-home-desc">Outdoor and indoor playgrounds with specialized sports coaches for athletic
+              excellence.</p>
+          </div>
+        </div>
+        <!-- Facility 6 -->
+        <div class="facility-card-home">
+          <img src="images/facility-6.jpg" alt="Transport Facility" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Transport Facility</h3>
+            <p class="facility-home-desc">Safe, secure, GPS-enabled buses covering major areas with experienced drivers
+              and attendants.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Slider (switching every 5 seconds) -->
+      <div class="facility-mobile-slider">
+        <!-- Slide 1 -->
+        <div class="facility-slide active">
+          <img src="images/facility-1.jpg" alt="Smart Classrooms" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Smart Classrooms</h3>
+            <p class="facility-home-desc">Digital learning with interactive whiteboards and modern teaching aids to
+              engage students visually.</p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="facility-slide">
+          <img src="images/facility-2.jpg" alt="Science Laboratories" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Science Laboratories</h3>
+            <p class="facility-home-desc">Well-equipped Physics, Chemistry and Biology labs providing hands-on practical
+              experiment space.</p>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="facility-slide">
+          <img src="images/facility-4.jpg" alt="Library" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Library</h3>
+            <p class="facility-home-desc">A vast collection of educational books, fiction, journals, and digital
+              reference resources.</p>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="facility-slide">
+          <img src="images/facility-3.jpg" alt="Computer Lab" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Computer Lab</h3>
+            <p class="facility-home-desc">High-end computers with latest software modules and high-speed safe internet
+              access.</p>
+          </div>
+        </div>
+        <!-- Slide 5 -->
+        <div class="facility-slide">
+          <img src="images/facility-5.jpg" alt="Sports Complex" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Sports Complex</h3>
+            <p class="facility-home-desc">Outdoor and indoor playgrounds with specialized sports coaches for athletic
+              excellence.</p>
+          </div>
+        </div>
+        <!-- Slide 6 -->
+        <div class="facility-slide">
+          <img src="images/facility-6.jpg" alt="Transport Facility" class="facility-home-img">
+          <div class="facility-home-info">
+            <h3 class="facility-home-title">Transport Facility</h3>
+            <p class="facility-home-desc">Safe, secure, GPS-enabled buses covering major areas with experienced drivers
+              and attendants.</p>
+          </div>
+        </div>
+
+        <div class="slider-controls">
+          <button class="slider-dot facility-dot active"></button>
+          <button class="slider-dot facility-dot"></button>
+          <button class="slider-dot facility-dot"></button>
+          <button class="slider-dot facility-dot"></button>
+          <button class="slider-dot facility-dot"></button>
+          <button class="slider-dot facility-dot"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry Section -->
+  <section class="enquiry-home" id="enquiry">
+    <div class="container">
+      <!-- Desktop Layout: Full Form -->
+      <div class="enquiry-container">
+        <div class="enquiry-info">
+          <h3>Admission Enquiry</h3>
+          <p>Get in touch with our admissions department to know more about SNPS academic syllabus, admission deadlines,
+            fee structures, and campus life.</p>
+          <div class="enquiry-contacts">
+            <div class="enquiry-contact-card">
+              <div class="enquiry-contact-icon"><i class="fas fa-phone-alt"></i></div>
+              <div>
+                <span class="enquiry-contact-label">Call Admissions Desk</span>
+                <span class="enquiry-contact-value">+91 96327 65550</span>
+              </div>
+            </div>
+            <div class="enquiry-contact-card">
+              <div class="enquiry-contact-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <span class="enquiry-contact-label">Email Support</span>
+                <span class="enquiry-contact-value">sujnanaschool@gmail.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="enquiry-form-wrapper">
+          <form id="enquiryForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="enqName" class="form-label">Parent's Name *</label>
+                <input type="text" id="enqName" class="form-input" placeholder="Enter parent's full name" required>
+                <span class="error-message"></span>
+              </div>
+              <div class="form-group">
+                <label for="enqEmail" class="form-label">Email Address *</label>
+                <input type="email" id="enqEmail" class="form-input" placeholder="Enter email address" required>
+                <span class="error-message"></span>
+              </div>
+              <div class="form-group">
+                <label for="enqPhone" class="form-label">Phone Number *</label>
+                <input type="tel" id="enqPhone" class="form-input" placeholder="Enter 10-digit mobile no." required>
+                <span class="error-message"></span>
+              </div>
+              <div class="form-group">
+                <label for="enqGrade" class="form-label">Admission For Grade/Class *</label>
+                <select id="enqGrade" class="form-input" required>
+                  <option value="" disabled selected>Select class</option>
+                  <option value="pre-kg">Pre KG</option>
+                  <option value="lkg">LKG</option>
+                  <option value="ukg">UKG</option>
+                  <option value="class-1">Class 1</option>
+                  <option value="class-2">Class 2</option>
+                  <option value="class-3">Class 3</option>
+                  <option value="class-4">Class 4</option>
+                  <option value="class-5">Class 5</option>
+                  <option value="class-6">Class 6</option>
+                  <option value="class-7">Class 7</option>
+                  <option value="class-8">Class 8</option>
+                  <option value="class-9">Class 9</option>
+                  <option value="class-10">Class 10</option>
+                </select>
+                <span class="error-message"></span>
+              </div>
+              <div class="form-group full-width">
+                <label for="enqMsg" class="form-label">Enquiry Message / Remarks</label>
+                <textarea id="enqMsg" class="form-input" rows="3"
+                  placeholder="Enter questions or requirements..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Submit Enquiry <i
+                class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Mobile Layout: Simplified card linking to Contact -->
+      <div class="enquiry-mobile-card">
+        <h3>Have Questions about Admissions?</h3>
+        <p>Our helpdesk team is here to guide you through the registration and fee procedures.</p>
+        <a href="contact.html" class="btn-yellow" style="display: inline-flex;">Contact Our Admissions Team <i
+            class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1: About SNPS -->
+        <div class="footer-col-about">
+          <div class="footer-logo-container">
+            <img src="images/logo.jpeg" alt="SNPS Logo" class="footer-logo-img">
+            <div>
+              <span class="footer-trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <h4 class="footer-school-name">SUJNANA NATIONAL PUBLIC SCHOOL</h4>
+            </div>
+          </div>
+          <p class="footer-tagline">Nurturing creative, critical thinking and emotional intelligence in a safe,
+            inspiring environment since inception.</p>
+          <div class="footer-socials">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div>
+          <h4 class="footer-col-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+                Home</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+                About Us</a></li>
+            <li><a href="admissions.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
+            <li><a href="facilities.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
+            <li><a href="gallery.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Gallery</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Accreditations -->
+        <div>
+          <h4 class="footer-col-title">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="admissions.html#process"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Admission Process</a></li>
+            <li><a href="about.html#principal"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Principal's Desk</a></li>
+            <li><a href="about.html#team"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Dedicated Staff</a></li>
+            <li><a href="gallery.html#photos"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Photo Album</a></li>
+            <li><a href="contact.html#map"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Google Location</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact Details -->
+        <div>
+          <h4 class="footer-col-title">School Contact</h4>
+          <div class="footer-contact-info">
+            <div class="footer-contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Sujnana National Public School campus, Muddebihal Road, Bagalkot District, Karnataka, India.</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-phone-alt"></i>
+              <span>+91 98459 85993<br>+91 96327 65550</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="far fa-envelope"></i>
+              <span>sujnanaschool@gmail.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shri Yalaguresh Educational Trust
+          (R).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Widget -->
+  <a href="https://wa.me/919845985993" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- JS Scripts -->
+  <script src="js/script.js"></script>
+</body>
+
+</html>

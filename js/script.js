@@ -1,0 +1,781 @@
+// Sujnana National Public School - script.js
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  initMobileMenu();
+  initStickyHeader();
+  initHomeHero();
+  initFacilitiesSlider();
+  initAchievementsSlider();
+  initGalleryFilter();
+  initGalleryTabs();
+  initVideoGallery();
+  initFormValidations();
+  initSmoothScroll();
+  initBackToTop();
+  initLightbox();
+  initToppersPage();
+  initScrollReveal();
+});
+
+// 1. Highlight Active Page in Navbar
+function initNavbar() {
+  const currentPath = window.location.pathname;
+  const pageName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+  
+  // Desktop menu links
+  const navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === pageName) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // Mobile menu links
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  mobileLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === pageName) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+// 2. Mobile Hamburger Menu Toggle
+function initMobileMenu() {
+  const hamburger = document.querySelector('.hamburger');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const overlay = document.querySelector('.mobile-nav-overlay');
+  
+  if (hamburger && mobileNav && overlay) {
+    const toggleMenu = () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      
+      // Toggle body scroll lock
+      if (mobileNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    };
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Close menu when a link is clicked
+    const links = document.querySelectorAll('.mobile-link');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileNav.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+  }
+}
+
+// 3. Sticky Header scroll behavior
+function initStickyHeader() {
+  const header = document.querySelector('.navbar-wrapper');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('sticky');
+      } else {
+        header.classList.remove('sticky');
+      }
+    });
+  }
+}
+
+// 4. Home Facilities Slider (auto-changes every 5 seconds on Mobile)
+function initFacilitiesSlider() {
+  const slides = document.querySelectorAll('.facility-slide');
+  const dots = document.querySelectorAll('.facility-dot');
+  
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    let slideInterval;
+
+    const showSlide = (n) => {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.add('active');
+      }
+    };
+
+    const nextSlide = () => {
+      showSlide(currentSlide + 1);
+    };
+
+    // Auto-slide starts
+    const startAutoSlide = () => {
+      slideInterval = setInterval(nextSlide, 5000);
+    };
+
+    const stopAutoSlide = () => {
+      clearInterval(slideInterval);
+    };
+
+    // Dot click controls
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        stopAutoSlide();
+        showSlide(index);
+        startAutoSlide();
+      });
+    });
+
+    // Start auto slide
+    startAutoSlide();
+
+    // Pause on hover
+    const sliderContainer = document.querySelector('.facility-mobile-slider');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+      sliderContainer.addEventListener('mouseleave', startAutoSlide);
+    }
+  }
+}
+
+// 5. Achievement slider on mobile
+function initAchievementsSlider() {
+  const slides = document.querySelectorAll('.achievement-slide');
+  const dots = document.querySelectorAll('.achievement-dot');
+  
+  if (slides.length > 0) {
+    let currentSlide = 0;
+    let slideInterval;
+
+    const showSlide = (n) => {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      if (dots[currentSlide]) {
+        dots[currentSlide].classList.add('active');
+      }
+    };
+
+    const nextSlide = () => {
+      showSlide(currentSlide + 1);
+    };
+
+    const startAutoSlide = () => {
+      slideInterval = setInterval(nextSlide, 5000);
+    };
+
+    const stopAutoSlide = () => {
+      clearInterval(slideInterval);
+    };
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        stopAutoSlide();
+        showSlide(index);
+        startAutoSlide();
+      });
+    });
+
+    startAutoSlide();
+
+    const sliderContainer = document.querySelector('.achievement-mobile-slider');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+      sliderContainer.addEventListener('mouseleave', startAutoSlide);
+    }
+  }
+}
+
+// 6. Gallery Photo Category Filter
+function initGalleryFilter() {
+  const filters = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+  
+  if (filters.length > 0 && items.length > 0) {
+    filters.forEach(filter => {
+      filter.addEventListener('click', () => {
+        // Remove active class from all filters
+        filters.forEach(btn => btn.classList.remove('active'));
+        // Add active to clicked
+        filter.classList.add('active');
+        
+        const category = filter.getAttribute('data-filter');
+        
+        items.forEach(item => {
+          const itemCategory = item.getAttribute('data-category');
+          if (category === 'all' || category === itemCategory) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+}
+
+// 7. Gallery Tabs Switch (Photos vs Videos)
+function initGalleryTabs() {
+  const photoTabBtn = document.getElementById('tab-photos');
+  const videoTabBtn = document.getElementById('tab-videos');
+  const photoGallery = document.querySelector('.photos-tab-content');
+  const videoGallery = document.querySelector('.videos-tab-content');
+  
+  if (photoTabBtn && videoTabBtn && photoGallery && videoGallery) {
+    photoTabBtn.addEventListener('click', () => {
+      photoTabBtn.classList.add('active');
+      videoTabBtn.classList.remove('active');
+      
+      photoGallery.style.display = 'block';
+      videoGallery.style.display = 'none';
+    });
+    
+    videoTabBtn.addEventListener('click', () => {
+      videoTabBtn.classList.add('active');
+      photoTabBtn.classList.remove('active');
+      
+      videoGallery.style.display = 'grid';
+      photoGallery.style.display = 'none';
+    });
+  }
+}
+
+// 7.5. Render Videos Dynamically
+function initVideoGallery() {
+  const container = document.getElementById('video-gallery-container');
+  if (container) {
+    const schoolVideos = [
+      {
+        title: "Annual Day Celebrations 2025-26",
+        thumbnail: "images/video-thumb-1.jpg",
+        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        date: "Jan 12, 2026"
+      },
+      {
+        title: "Independence Day Parade & Events",
+        thumbnail: "images/video-thumb-2.jpg",
+        videoUrl: "https://www.w3schools.com/html/movie.mp4",
+        date: "Aug 15, 2025"
+      },
+      {
+        title: "Sujnana Sci-Quest Exhibition",
+        thumbnail: "images/video-thumb-3.jpg",
+        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        date: "May 28, 2026"
+      },
+      {
+        title: "Inter-school Volleyball Championship Finals",
+        thumbnail: "images/video-thumb-4.jpg",
+        videoUrl: "https://www.w3schools.com/html/movie.mp4",
+        date: "Oct 22, 2025"
+      }
+    ];
+
+    container.innerHTML = schoolVideos.map(video => `
+      <div class="video-card">
+        <div class="video-thumb-wrapper" data-video="${video.videoUrl}">
+          <img src="${video.thumbnail}" alt="${video.title}" class="video-thumb">
+          <div class="video-play-btn"><i class="fas fa-play"></i></div>
+        </div>
+        <div class="video-info">
+          <h4 class="video-title">${video.title}</h4>
+          <span class="video-date"><i class="far fa-calendar-alt"></i> ${video.date}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+// 8. Contact Form and Enquiry Form validations
+function initFormValidations() {
+  // Common error validation function
+  const validateField = (input, regex, errorMsg) => {
+    const errorEl = input.nextElementSibling;
+    if (!regex.test(input.value.trim())) {
+      input.style.borderColor = '#dc2626';
+      if (errorEl && errorEl.classList.contains('error-message')) {
+        errorEl.textContent = errorMsg;
+        errorEl.style.display = 'block';
+      }
+      return false;
+    } else {
+      input.style.borderColor = '';
+      if (errorEl && errorEl.classList.contains('error-message')) {
+        errorEl.style.display = 'none';
+      }
+      return true;
+    }
+  };
+
+  // Helper patterns
+  const namePattern = /^[a-zA-Z\s]{2,50}$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const phonePattern = /^[0-9]{10}$/;
+
+  // Setup Contact Form
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('contactName');
+      const emailInput = document.getElementById('contactEmail');
+      const phoneInput = document.getElementById('contactPhone');
+      const subjectInput = document.getElementById('contactSubject');
+      const messageInput = document.getElementById('contactMessage');
+      
+      let isValid = true;
+      
+      if (nameInput) {
+        isValid = validateField(nameInput, namePattern, 'Please enter a valid name (letters only, min 2 chars)') && isValid;
+      }
+      if (emailInput) {
+        isValid = validateField(emailInput, emailPattern, 'Please enter a valid email address') && isValid;
+      }
+      if (phoneInput) {
+        isValid = validateField(phoneInput, phonePattern, 'Please enter a valid 10-digit phone number') && isValid;
+      }
+      if (subjectInput) {
+        const errorEl = subjectInput.nextElementSibling;
+        if (subjectInput.value === '') {
+          subjectInput.style.borderColor = '#dc2626';
+          if (errorEl && errorEl.classList.contains('error-message')) {
+            errorEl.textContent = 'Please select a subject';
+            errorEl.style.display = 'block';
+          }
+          isValid = false;
+        } else {
+          subjectInput.style.borderColor = '';
+          if (errorEl && errorEl.classList.contains('error-message')) {
+            errorEl.style.display = 'none';
+          }
+        }
+      }
+      if (messageInput) {
+        const errorEl = messageInput.nextElementSibling;
+        if (messageInput.value.trim().length < 10) {
+          messageInput.style.borderColor = '#dc2626';
+          if (errorEl && errorEl.classList.contains('error-message')) {
+            errorEl.textContent = 'Message must be at least 10 characters long';
+            errorEl.style.display = 'block';
+          }
+          isValid = false;
+        } else {
+          messageInput.style.borderColor = '';
+          if (errorEl && errorEl.classList.contains('error-message')) {
+            errorEl.style.display = 'none';
+          }
+        }
+      }
+
+      if (isValid) {
+        alert('Thank you! Your message has been sent successfully. We will get back to you shortly.');
+        contactForm.reset();
+      }
+    });
+  }
+
+  // Setup Home/Footer Enquiry Form
+  const enquiryForm = document.getElementById('enquiryForm');
+  if (enquiryForm) {
+    enquiryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('enqName');
+      const emailInput = document.getElementById('enqEmail');
+      const phoneInput = document.getElementById('enqPhone');
+      const gradeInput = document.getElementById('enqGrade');
+      
+      let isValid = true;
+      
+      if (nameInput) {
+        isValid = validateField(nameInput, namePattern, 'Please enter a valid name (letters only)') && isValid;
+      }
+      if (emailInput) {
+        isValid = validateField(emailInput, emailPattern, 'Please enter a valid email address') && isValid;
+      }
+      if (phoneInput) {
+        isValid = validateField(phoneInput, phonePattern, 'Please enter a valid 10-digit phone number') && isValid;
+      }
+      if (gradeInput) {
+        const errorEl = gradeInput.nextElementSibling;
+        if (gradeInput.value === '') {
+          gradeInput.style.borderColor = '#dc2626';
+          if (errorEl && errorEl.classList.contains('error-message')) {
+            errorEl.textContent = 'Please select a grade/class';
+            errorEl.style.display = 'block';
+          }
+          isValid = false;
+        } else {
+          gradeInput.style.borderColor = '';
+          if (errorEl && errorEl.classList.contains('error-message')) {
+            errorEl.style.display = 'none';
+          }
+        }
+      }
+
+      if (isValid) {
+        alert('Admission Enquiry submitted successfully. Our admissions team will contact you.');
+        enquiryForm.reset();
+      }
+    });
+  }
+}
+
+// 9. Smooth Scroll to anchors
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      }
+    });
+  });
+}
+
+// 10. Back to Top Button
+function initBackToTop() {
+  const backToTopBtn = document.querySelector('.back-to-top');
+  
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+}
+
+// 11. Photo / Video Lightbox
+function initLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxVideo = document.getElementById('lightbox-video');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const closeBtn = document.getElementById('lightbox-close');
+  
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const videoThumbnails = document.querySelectorAll('.video-thumb-wrapper');
+
+  if (lightbox && closeBtn) {
+    // Open image lightbox
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        const title = item.querySelector('.gallery-item-title');
+        
+        if (img) {
+          lightboxImg.src = img.src;
+          lightboxImg.style.display = 'block';
+          lightboxVideo.style.display = 'none';
+          lightboxCaption.textContent = title ? title.textContent : 'School Gallery';
+          lightbox.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // Open video lightbox (mocking video player since these are demo links)
+    videoThumbnails.forEach(wrapper => {
+      wrapper.addEventListener('click', () => {
+        const card = wrapper.closest('.video-card');
+        const title = card ? card.querySelector('.video-title').textContent : 'School Video';
+        
+        // In a real application, you'd insert a youtube/vimeo/cloudinary iframe.
+        // We will insert a placeholder video player or show a alert for demo URL.
+        const videoUrl = wrapper.getAttribute('data-video');
+        
+        lightboxVideo.src = videoUrl;
+        lightboxVideo.style.display = 'block';
+        lightboxImg.style.display = 'none';
+        lightboxCaption.textContent = title;
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close lightbox
+    const closeLightbox = () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+      lightboxVideo.src = '';
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+  }
+}
+
+// 12. Home Hero background video and photo slider sequence
+function initHomeHero() {
+  const video = document.getElementById('hero-video');
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  const prevBtn = document.querySelector('.hero-nav-arrow.prev');
+  const nextBtn = document.querySelector('.hero-nav-arrow.next');
+  const sliderNav = document.querySelector('.hero-slider-nav');
+  const heroContent = document.querySelector('.hero-content-container');
+  const heroOverlay = document.querySelector('.hero-overlay');
+
+  if (video && slides.length > 0) {
+    let currentPhotoIndex = 0;
+    let photoTimeout = null;
+    let isPlayingVideo = true;
+
+    // Helper: Show current slide and update active dot
+    const showSlide = (index) => {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      currentPhotoIndex = index;
+      slides[currentPhotoIndex].classList.add('active');
+      if (dots[currentPhotoIndex]) {
+        dots[currentPhotoIndex].classList.add('active');
+      }
+    };
+
+    // Helper: Start the video playback state
+    const playVideo = () => {
+      isPlayingVideo = true;
+      
+      // Stop and clear photo sliders
+      clearTimeout(photoTimeout);
+      slides.forEach(slide => slide.classList.remove('active'));
+      if (sliderNav) sliderNav.classList.remove('active');
+
+      // Show hero text content and overlay
+      if (heroContent) heroContent.classList.remove('hidden');
+      if (heroOverlay) heroOverlay.classList.remove('hidden');
+
+      // Show and play video
+      video.classList.add('active');
+      video.currentTime = 0;
+      
+      // Play the video programmatically
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Auto-play was prevented by browser policies. Triggering slideshow...");
+          startPhotoSlider();
+        });
+      }
+    };
+
+    // Helper: Transition to Photo Slideshow
+    const startPhotoSlider = () => {
+      isPlayingVideo = false;
+      
+      // Fade out video
+      video.classList.remove('active');
+      video.pause();
+
+      // Hide hero text content and overlay
+      if (heroContent) heroContent.classList.add('hidden');
+      if (heroOverlay) heroOverlay.classList.add('hidden');
+
+      // Show first photo and navigation controls
+      showSlide(0);
+      if (sliderNav) sliderNav.classList.add('active');
+
+      // Start 5-second rotation timer
+      startPhotoTimer();
+    };
+
+    // Helper: Handle the 5-second automatic sliding timeout
+    const startPhotoTimer = () => {
+      clearTimeout(photoTimeout);
+      photoTimeout = setTimeout(() => {
+        if (!isPlayingVideo) {
+          if (currentPhotoIndex < slides.length - 1) {
+            showSlide(currentPhotoIndex + 1);
+            startPhotoTimer();
+          } else {
+            // All photos completed, loop back to video
+            playVideo();
+          }
+        }
+      }, 5000);
+    };
+
+    // Action handlers for manual arrows
+    const handleNext = () => {
+      if (isPlayingVideo) return; // ignore during video
+      clearTimeout(photoTimeout);
+      if (currentPhotoIndex < slides.length - 1) {
+        showSlide(currentPhotoIndex + 1);
+        startPhotoTimer();
+      } else {
+        playVideo();
+      }
+    };
+
+    const handlePrev = () => {
+      if (isPlayingVideo) return; // ignore during video
+      clearTimeout(photoTimeout);
+      if (currentPhotoIndex > 0) {
+        showSlide(currentPhotoIndex - 1);
+      } else {
+        showSlide(slides.length - 1);
+      }
+      startPhotoTimer();
+    };
+
+    // Wire up event listeners
+    video.addEventListener('ended', startPhotoSlider);
+
+    if (nextBtn) nextBtn.addEventListener('click', handleNext);
+    if (prevBtn) prevBtn.addEventListener('click', handlePrev);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        if (isPlayingVideo) return;
+        clearTimeout(photoTimeout);
+        showSlide(index);
+        startPhotoTimer();
+      });
+    });
+
+    // Start sequence by displaying video
+    playVideo();
+  }
+}
+
+// 17. SSLC Toppers page filtering and search logic
+function initToppersPage() {
+  const searchInput = document.getElementById('topper-search');
+  const tabs = document.querySelectorAll('.topper-tab');
+  const yearGroups = document.querySelectorAll('.topper-year-group');
+  const noResults = document.querySelector('.toppers-no-results');
+  const btnExport = document.getElementById('btn-export-pdf');
+
+  // Check if we are on the toppers page
+  if (!searchInput && tabs.length === 0) return;
+
+  let activeFilter = 'all';
+  let searchQuery = '';
+
+  // Helper function to apply both tab and search filter
+  const applyFilters = () => {
+    let totalVisibleToppers = 0;
+
+    yearGroups.forEach(group => {
+      const year = group.getAttribute('data-year');
+      const cards = group.querySelectorAll('.topper-row-card');
+      let visibleInGroup = 0;
+
+      // Filter individual cards in the group based on search query
+      cards.forEach(card => {
+        const name = card.querySelector('.topper-name').textContent.toLowerCase();
+        const matchesSearch = name.includes(searchQuery);
+
+        if (matchesSearch) {
+          card.classList.remove('hidden');
+          visibleInGroup++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Filter the year group container based on selected tab and visible cards inside it
+      const matchesTab = (activeFilter === 'all' || activeFilter === year);
+
+      if (matchesTab && visibleInGroup > 0) {
+        group.classList.remove('hidden');
+        totalVisibleToppers += visibleInGroup;
+      } else {
+        group.classList.add('hidden');
+      }
+    });
+
+    // Toggle "No results" message
+    if (noResults) {
+      if (totalVisibleToppers === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+  };
+
+  // Tab click event listeners
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      activeFilter = tab.getAttribute('data-filter');
+      applyFilters();
+    });
+  });
+
+  // Search input listener
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
+
+  // Export PDF / Print listener
+  if (btnExport) {
+    btnExport.addEventListener('click', () => {
+      window.print();
+    });
+  }
+}
+
+// 18. Viewport Scroll Reveal animations
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.fade-up-reveal');
+  
+  if (reveals.length === 0) return;
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target); // trigger animation once
+      }
+    });
+  }, {
+    threshold: 0.15 // trigger when 15% of the element is visible
+  });
+
+  reveals.forEach(reveal => {
+    observer.observe(reveal);
+  });
+}
+
