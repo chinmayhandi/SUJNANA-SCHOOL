@@ -1324,24 +1324,92 @@ header {
 
 .enquiry-mobile-card {
   display: none;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+  width: 100%;
+  padding: 20px;
+  border-radius: 24px;
+  background-color: #062B78; /* Deep School Blue */
   color: var(--white);
-  padding: 30px;
-  border-radius: 8px;
   text-align: center;
-  box-shadow: var(--shadow);
+  box-shadow: 0 10px 30px rgba(6, 43, 120, 0.15); /* Soft shadow */
+  margin: 20px 0; /* Keep white spacing around card */
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease, translateY 0.8s ease;
 }
 
-.enquiry-mobile-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 10px;
+.enquiry-mobile-card .support-icon-wrapper {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.enquiry-mobile-card .support-icon-wrapper i {
+  font-size: 2.5rem;
   color: var(--yellow);
 }
 
-.enquiry-mobile-card p {
-  margin-bottom: 20px;
-  opacity: 0.9;
+.enquiry-mobile-card .contact-team-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 15px;
+  text-align: center;
 }
+
+.enquiry-mobile-card .contact-team-title span {
+  color: var(--yellow);
+}
+
+.enquiry-mobile-card .contact-team-desc {
+  font-size: 0.95rem;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  opacity: 0.95;
+  padding: 0 10px;
+}
+
+.enquiry-mobile-btn {
+  background-color: var(--yellow);
+  color: #001f4d; /* Dark Blue */
+  height: 56px;
+  border-radius: 14px;
+  width: 100%;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(244, 180, 0, 0.3); /* Shadow enabled */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  border: none;
+}
+
+/* Hover effect on card/btn (desktop only) */
+@media (hover: hover) {
+  .enquiry-mobile-card:hover {
+    box-shadow: 0 15px 40px rgba(6, 43, 120, 0.25);
+  }
+  .enquiry-mobile-btn:hover {
+    background-color: var(--yellow-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(244, 180, 0, 0.5);
+  }
+}
+
+/* Tap animation (mobile) */
+.enquiry-mobile-card:active {
+  transform: scale(0.995);
+}
+
+.enquiry-mobile-btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 8px rgba(244, 180, 0, 0.2);
+}
+
 
 
 /* ==================== ABOUT US PAGE ==================== */
@@ -3531,6 +3599,230 @@ header {
     font-size: 1.5rem;
   }
 }
+
+/* Mobile Size: 320px–768px only override for Enquiry Section */
+@media (min-width: 320px) and (max-width: 768px) {
+  .enquiry-form-wrapper {
+    display: none !important;
+  }
+  .enquiry-info {
+    display: none !important;
+  }
+  .enquiry-mobile-card {
+    display: block !important;
+  }
+}
+
+/* --- Premium Website Loading Screen --- */
+html.loading-active body {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100% !important;
+}
+
+/* Initially, when loading-active is present, hide all existing content */
+html.loading-active body > *:not(#school-loader) {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+#school-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/hero-school.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 9999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+}
+
+/* Dark Navy Blue Gradient Overlay */
+#school-loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(6, 43, 120, 0.95), rgba(0, 15, 77, 0.98));
+  z-index: 1;
+}
+
+/* Center Layout Wrapper */
+.loader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  max-width: 650px;
+  width: 90%;
+}
+
+/* Logo Styling */
+.loader-logo-wrapper {
+  margin-bottom: 25px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--white);
+  padding: 10px;
+  box-shadow: 0 0 30px rgba(244, 180, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  animation: loaderLogoFadeIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.loader-logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Heading Styling */
+.loader-heading {
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: loaderSlideUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+}
+
+.loader-heading span.highlight {
+  color: var(--yellow);
+}
+
+/* Tagline Styling */
+.loader-tagline {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font);
+  font-weight: 400;
+  font-size: 1.1rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  margin-bottom: 40px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: loaderSlideUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.5s forwards;
+}
+
+/* Progress Section */
+.loader-progress-container {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: loaderSlideUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
+}
+
+.loader-text {
+  color: var(--yellow);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.loader-bar-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 12px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.loader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--yellow);
+  border-radius: 10px;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(244, 180, 0, 0.8);
+  position: relative;
+}
+
+.loader-small-text {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+/* Outro Transition state */
+#school-loader.fade-out {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+/* Keyframes */
+@keyframes loaderLogoFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes loaderSlideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsiveness overrides */
+@media (max-width: 768px) {
+  .loader-logo-wrapper {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 20px;
+  }
+  .loader-heading {
+    font-size: 1.6rem;
+  }
+  .loader-tagline {
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+  }
+  .loader-progress-container {
+    width: 180px;
+  }
+  .loader-text {
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+  }
+  .loader-small-text {
+    font-size: 0.7rem;
+  }
+}
+
 
 
 

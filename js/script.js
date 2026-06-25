@@ -1,4 +1,117 @@
-// Sujnana National Public School - script.js
+// Check sessionStorage to decide if we should show the loader
+(function() {
+  const isHomepage = window.location.pathname.endsWith('index.html') || 
+                     window.location.pathname === '/' || 
+                     window.location.pathname.endsWith('/');
+  const isReload = (window.performance && window.performance.navigation && window.performance.navigation.type === 1) ||
+                   (window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0] && window.performance.getEntriesByType('navigation')[0].type === 'reload');
+  const isFirstLoad = !sessionStorage.getItem("schoolLoader");
+
+  if (isHomepage && (isFirstLoad || isReload)) {
+    // 1. Create the loader HTML structure
+    const loaderHtml = `
+      <div id="school-loader">
+        <div class="loader-content">
+          <div class="loader-logo-wrapper">
+            <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="loader-logo">
+          </div>
+          <h1 class="loader-heading">SUJNANA<br><span class="highlight">NATIONAL PUBLIC SCHOOL</span></h1>
+          <p class="loader-tagline">Nurturing Minds, Building Futures</p>
+          <div class="loader-progress-container">
+            <span class="loader-text">PREPARING YOUR EXPERIENCE…</span>
+            <div class="loader-bar-track">
+              <div class="loader-bar-fill" id="loader-progress-bar"></div>
+            </div>
+            <span class="loader-small-text">Please wait while we load the school website.</span>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // 2. Function to inject the loader
+    const injectLoader = () => {
+      if (document.body) {
+        // Prepend the loader HTML to body
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = loaderHtml.trim();
+        const loaderElement = tempDiv.firstChild;
+        document.body.insertBefore(loaderElement, document.body.firstChild);
+        
+        // Ensure html.loading-active is set
+        document.documentElement.classList.add("loading-active");
+
+        // Preload background image and logo to ensure no layout jumps or empty images
+        const bgImg = new Image();
+        const logoImg = new Image();
+        let loadedCount = 0;
+        
+        const startProgressBar = () => {
+          const progressBar = document.getElementById('loader-progress-bar');
+          if (!progressBar) return;
+          
+          let progress = 0;
+          const duration = 2500; // 2.5 seconds total loading duration
+          const intervalTime = 15; // smooth updates every 15ms
+          const step = (intervalTime / duration) * 100;
+          
+          const interval = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+              progress = 100;
+              clearInterval(interval);
+              
+              // End loader
+              setTimeout(() => {
+                const loader = document.getElementById('school-loader');
+                if (loader) {
+                  loader.classList.add('fade-out');
+                  
+                  // After transition ends, remove loader completely and clear classes
+                  setTimeout(() => {
+                    loader.remove();
+                    document.documentElement.classList.remove('loading-active');
+                    sessionStorage.setItem("schoolLoader", "true");
+                  }, 800); // 800ms matching CSS transition
+                }
+              }, 300); // short delay at 100% for premium feel
+            }
+            progressBar.style.width = progress + '%';
+          }, intervalTime);
+        };
+
+        const imageLoaded = () => {
+          loadedCount++;
+          if (loadedCount === 2) {
+            startProgressBar();
+          }
+        };
+
+        bgImg.onload = imageLoaded;
+        bgImg.onerror = imageLoaded; // fallback
+        logoImg.onload = imageLoaded;
+        logoImg.onerror = imageLoaded; // fallback
+
+        bgImg.src = 'images/hero-school.jpg';
+        logoImg.src = 'images/logo.jpeg';
+      } else {
+        setTimeout(injectLoader, 10);
+      }
+    };
+    
+    // Inject as early as possible
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", injectLoader);
+    } else {
+      injectLoader();
+    }
+  } else {
+    // If not homepage, or already loaded/not refreshed, ensure we are not hiding the body
+    document.documentElement.classList.remove("loading-active");
+    if (isHomepage) {
+      sessionStorage.setItem("schoolLoader", "true");
+    }
+  }
+})();
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();

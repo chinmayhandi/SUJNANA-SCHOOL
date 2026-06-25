@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+  <script>
+    (function() {
+      const isReload = (window.performance && window.performance.navigation && window.performance.navigation.type === 1) ||
+                       (window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0] && window.performance.getEntriesByType('navigation')[0].type === 'reload');
+      const isFirstLoad = !sessionStorage.getItem("schoolLoader");
+      if (isFirstLoad || isReload) {
+        document.documentElement.classList.add("loading-active");
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sujnana National Public School | Home</title>
@@ -701,11 +711,13 @@
       </div>
 
       <!-- Mobile Layout: Simplified card linking to Contact -->
-      <div class="enquiry-mobile-card">
-        <h3>Have Questions about Admissions?</h3>
-        <p>Our helpdesk team is here to guide you through the registration and fee procedures.</p>
-        <a href="contact.html" class="btn-yellow" style="display: inline-flex;">Contact Our Admissions Team <i
-            class="fas fa-arrow-right"></i></a>
+      <div class="enquiry-mobile-card fade-up-reveal">
+        <div class="support-icon-wrapper">
+          <i class="fas fa-headset"></i>
+        </div>
+        <h3 class="contact-team-title">CONTACT<br><span>OUR TEAM</span></h3>
+        <p class="contact-team-desc">For any queries, support, school information, or assistance, our team is here to help you.</p>
+        <a href="contact.html" class="enquiry-mobile-btn">CONTACT OUR TEAM <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
