@@ -6069,3 +6069,289 @@ html.loading-active body > *:not(#school-loader) {
     padding: 20px;
   }
 }
+
+/* ==========================================
+   BREADCRUMB HERO SECTION
+   ========================================== */
+.breadcrumb-hero {
+  position: relative;
+  height: 260px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.breadcrumb-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 43, 102, 0.9) 0%, rgba(0, 31, 77, 0.85) 100%);
+  z-index: 1;
+}
+
+.breadcrumb-hero .container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.breadcrumb-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.breadcrumb-hero-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  animation: breadcrumbFadeIn 0.8s ease-out forwards;
+}
+
+.breadcrumb-path {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  opacity: 0;
+  animation: breadcrumbSlideUp 0.8s ease-out 0.2s forwards;
+}
+
+.breadcrumb-path a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.breadcrumb-path a:hover {
+  opacity: 0.85;
+}
+
+.breadcrumb-separator {
+  color: #ffffff;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.breadcrumb-current {
+  color: #f4b400; /* School yellow */
+  font-weight: 500;
+}
+
+.breadcrumb-hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breadcrumb-hero-icon {
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.2);
+  animation: breadcrumbIconFloat 4s ease-in-out infinite;
+  display: block;
+}
+
+/* Animations */
+@keyframes breadcrumbFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes breadcrumbSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes breadcrumbIconFloat {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Responsive Hero Design */
+@media (max-width: 768px) {
+  .breadcrumb-hero {
+    height: 170px;
+  }
+  
+  .breadcrumb-hero .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .breadcrumb-hero-left {
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .breadcrumb-hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .breadcrumb-path {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .breadcrumb-hero-icon {
+    font-size: 3.5rem;
+    opacity: 0.15;
+  }
+}
+
+@media (max-width: 480px) {
+  .breadcrumb-hero-icon {
+    display: none;
+  }
+}
+
+/* Mobile Switcher Custom Redesign */
+@media (max-width: 768px) {
+  .switch-cards-section {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    padding: 0 !important;
+  }
+
+  .switch-cards-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  .switch-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: clamp(4px, 1.5vw, 8px) !important;
+    width: 48% !important;
+    height: 60px !important;
+    padding: 0 clamp(4px, 1.8vw, 10px) !important;
+    border-radius: 16px !important;
+    box-sizing: border-box !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden !important;
+  }
+
+  .switch-card:hover {
+    transform: translateY(0) !important;
+  }
+
+  .switch-card:active {
+    transform: scale(1.02) !important;
+  }
+
+  .switch-card-icon {
+    font-size: clamp(14px, 4vw, 18px) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.3s ease !important;
+    flex-shrink: 0 !important;
+  }
+
+  .switch-card-info {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-width: 0 !important; /* Allow proper shrinking if needed */
+  }
+
+  .switch-card-info h3 {
+    font-size: clamp(13px, 3.8vw, 18px) !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: clamp(4px, 1.5vw, 6px) !important;
+  }
+
+  .switch-card-info p {
+    display: none !important;
+  }
+
+  .switch-card-emoji {
+    display: none !important;
+  }
+
+  /* Active Button Styles */
+  .switch-card.active {
+    background-color: #0B2E6D !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-bottom: 4px solid #F4B400 !important;
+    box-shadow: 0 4px 12px rgba(11, 46, 109, 0.25) !important;
+  }
+
+  .switch-card.active .switch-card-icon {
+    color: #F4B400 !important;
+  }
+
+  /* Inactive Button Styles */
+  .switch-card:not(.active) {
+    background-color: #ffffff !important;
+    color: #0B2E6D !important;
+    border: 1.5px solid #F4B400 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .switch-card:not(.active) .switch-card-icon {
+    color: #0B2E6D !important;
+  }
+}
+
+
