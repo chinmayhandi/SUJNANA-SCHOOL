@@ -25,6 +25,37 @@
 
 <body>
 
+  <!-- Welcome Popup Modal -->
+  <div id="welcome-popup" class="welcome-popup-overlay">
+    <div class="welcome-popup-card">
+      <button class="welcome-popup-close" id="close-welcome-popup" aria-label="Close Welcome Popup">&times;</button>
+      
+      <!-- Background Decorative Light Icons -->
+      <div class="welcome-popup-bg-icons">
+        <i class="fas fa-book welcome-icon-bg"></i>
+        <i class="fas fa-graduation-cap welcome-icon-bg"></i>
+        <i class="fas fa-microscope welcome-icon-bg"></i>
+        <i class="fas fa-pencil-alt welcome-icon-bg"></i>
+        <i class="fas fa-palette welcome-icon-bg"></i>
+      </div>
+      
+      <!-- Dotted Elements -->
+      <div class="welcome-dots dots-top-left"></div>
+      <div class="welcome-dots dots-bottom-right"></div>
+      
+      <div class="welcome-popup-content">
+        <div class="welcome-logo-wrapper">
+          <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="welcome-logo">
+        </div>
+        <span class="welcome-subtitle">Welcome to</span>
+        <h2 class="welcome-title">SUJNANA<br><span class="highlight">NATIONAL PUBLIC SCHOOL</span></h2>
+        <p class="welcome-tagline">Nurturing Minds, Building Futures.</p>
+        <p class="welcome-small-text">Empowering every child to learn, grow and shine.</p>
+        <button class="welcome-popup-btn" id="btn-begin">Let’s Begin <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+
   <!-- Common Header -->
   <header>
     <!-- Top Bar -->
@@ -62,6 +93,7 @@
             <li><a href="about.html" class="nav-link">About Us</a></li>
             <li><a href="admissions.html" class="nav-link">Admissions</a></li>
             <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+            <li><a href="achievements.html" class="nav-link">Achievements</a></li>
             <li><a href="gallery.html" class="nav-link">Gallery</a></li>
             <li><a href="contact.html" class="nav-link">Contact</a></li>
           </ul>
@@ -90,6 +122,7 @@
       <a href="about.html" class="mobile-link">About Us</a>
       <a href="admissions.html" class="mobile-link">Admissions</a>
       <a href="facilities.html" class="mobile-link">Facilities</a>
+      <a href="achievements.html" class="mobile-link">Achievements</a>
       <a href="gallery.html" class="mobile-link">Gallery</a>
       <a href="contact.html" class="mobile-link">Contact</a>
     </div>
@@ -243,7 +276,7 @@
   </section>
 
   <!-- Latest News & Events -->
-  <section class="news-events">
+  <section class="news-events" id="news">
     <div class="container">
       <div class="section-title-wrapper">
         <span class="section-subtitle">Announcements</span>
@@ -293,13 +326,13 @@
       </div>
 
       <div class="view-all-wrapper">
-        <a href="gallery.html" class="view-all-link">View All School Events <i class="fas fa-arrow-right"></i></a>
+        <a href="news-events.html" class="view-all-link">View All School Events <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   </section>
 
   <!-- Proud Achievements -->
-  <section class="achievements">
+  <section class="achievements" id="achievements">
     <div class="container">
       <div class="section-title-wrapper">
         <span class="section-subtitle">Our Pride</span>
@@ -424,6 +457,12 @@
           <button class="slider-dot achievement-dot"></button>
         </div>
       </div>
+
+      <!-- Mobile Only View More Button -->
+      <div class="mobile-only-cta">
+        <a href="toppers.html" class="btn-primary">View More <i class="fas fa-trophy"></i></a>
+      </div>
+
     </div>
   </section>
 
@@ -630,6 +669,12 @@
           <button class="slider-dot facility-dot"></button>
         </div>
       </div>
+
+      <!-- Mobile Only View More Button -->
+      <div class="mobile-only-cta">
+        <a href="facilities.html" class="btn-primary">View More <i class="fas fa-arrow-right"></i></a>
+      </div>
+
     </div>
   </section>
 
@@ -757,6 +802,7 @@
                   style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
             <li><a href="facilities.html"><i class="fas fa-chevron-right"
                   style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
+            <li><a href="achievements.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Achievements</a></li>
             <li><a href="gallery.html"><i class="fas fa-chevron-right"
                   style="font-size: 0.75rem; margin-right: 8px;"></i> Gallery</a></li>
             <li><a href="contact.html"><i class="fas fa-chevron-right"
@@ -803,8 +849,14 @@
 
       <!-- Copyright Bottom -->
       <div class="footer-bottom">
-        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shri Yalaguresh Educational Trust
-          (R).</p>
+        <div class="footer-bottom-flex">
+          <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shri Yalaguresh Educational Trust (R).</p>
+          <div class="footer-legal-links">
+            <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
+            <a href="terms.html" class="footer-legal-link">Terms & Conditions</a>
+            <a href="sitemap.html" class="footer-legal-link">Sitemap</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>

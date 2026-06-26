@@ -3,8 +3,18 @@
   const isHomepage = window.location.pathname.endsWith('index.html') || 
                      window.location.pathname === '/' || 
                      window.location.pathname.endsWith('/');
+  
+  // If user visits another page first, popup should not appear again
+  if (!isHomepage) {
+    sessionStorage.setItem("welcomePopupShown", "true");
+  }
   const isReload = (window.performance && window.performance.navigation && window.performance.navigation.type === 1) ||
                    (window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0] && window.performance.getEntriesByType('navigation')[0].type === 'reload');
+  
+  if (isReload) {
+    sessionStorage.removeItem("welcomePopupShown");
+  }
+
   const isFirstLoad = !sessionStorage.getItem("schoolLoader");
 
   if (isHomepage && (isFirstLoad || isReload)) {
@@ -71,6 +81,11 @@
                     loader.remove();
                     document.documentElement.classList.remove('loading-active');
                     sessionStorage.setItem("schoolLoader", "true");
+                    
+                    // Trigger Welcome Popup after loader closes
+                    if (typeof initWelcomePopupShow === 'function') {
+                      initWelcomePopupShow();
+                    }
                   }, 800); // 800ms matching CSS transition
                 }
               }, 300); // short delay at 100% for premium feel
@@ -129,6 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightbox();
   initToppersPage();
   initScrollReveal();
+  initFooterLinks();
+  initWelcomePopup();
+  initAchievementsPageFilters();
+  initAchievementsToppersSlider();
+  initNewsEventsPage();
 });
 
 // 1. Highlight Active Page in Navbar
@@ -891,4 +911,521 @@ function initScrollReveal() {
     observer.observe(reveal);
   });
 }
+
+// 19. Highlight Active Footer Legal Links
+function initFooterLinks() {
+  const currentPath = window.location.pathname;
+  const pageName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+  
+  const footerLinks = document.querySelectorAll('.footer-legal-link');
+  footerLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === pageName) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+// 20. Welcome Popup functions
+function initWelcomePopup() {
+  const isHomepage = window.location.pathname.endsWith('index.html') || 
+                     window.location.pathname === '/' || 
+                     window.location.pathname.endsWith('/');
+  if (!isHomepage) return;
+
+  const popup = document.getElementById('welcome-popup');
+  if (!popup) return;
+
+  const btnBegin = document.getElementById('btn-begin');
+  const btnClose = document.getElementById('close-welcome-popup');
+
+  const closePopup = () => {
+    popup.classList.remove('active');
+    document.body.classList.remove('popup-active');
+    document.documentElement.classList.remove('popup-active');
+    sessionStorage.setItem("welcomePopupShown", "true");
+  };
+
+  if (btnBegin) btnBegin.addEventListener('click', closePopup);
+  if (btnClose) btnClose.addEventListener('click', closePopup);
+  
+  // Close on clicking outside the card
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) {
+      closePopup();
+    }
+  });
+}
+
+function initWelcomePopupShow() {
+  const popup = document.getElementById('welcome-popup');
+  const popupShown = sessionStorage.getItem("welcomePopupShown");
+  
+  if (popup && !popupShown) {
+    // Add scroll lock
+    document.body.classList.add('popup-active');
+    document.documentElement.classList.add('popup-active');
+    
+    // Show popup overlay and modal
+    setTimeout(() => {
+      popup.classList.add('active');
+    }, 100);
+  }
+}
+
+// 21. Achievements Page Category Filter
+function initAchievementsPageFilters() {
+  const filterBtns = document.querySelectorAll('.filter-ach-btn');
+  const cards = document.querySelectorAll('.recent-ach-card');
+  
+  if (filterBtns.length === 0 || cards.length === 0) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      cards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filterValue === 'all' || category === filterValue) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+// 22. Achievements Page Toppers Slider on Mobile
+function initAchievementsToppersSlider() {
+  const slides = document.querySelectorAll('.topper-slide-ach');
+  const dots = document.querySelectorAll('.topper-dot-ach');
+  
+  if (slides.length === 0) return;
+
+  let currentSlide = 0;
+  let slideInterval;
+
+  const showSlide = (n) => {
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) {
+      dots[currentSlide].classList.add('active');
+    }
+  };
+
+  const nextSlide = () => {
+    showSlide(currentSlide + 1);
+  };
+
+  const startAutoSlide = () => {
+    slideInterval = setInterval(nextSlide, 4000);
+  };
+
+  const stopAutoSlide = () => {
+    clearInterval(slideInterval);
+  };
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      stopAutoSlide();
+      showSlide(index);
+      startAutoSlide();
+    });
+  });
+
+  if (dots.length > 0) {
+    showSlide(0);
+    startAutoSlide();
+
+    const sliderContainer = document.querySelector('.toppers-mobile-slider-ach');
+    if (sliderContainer) {
+      sliderContainer.addEventListener('mouseenter', stopAutoSlide);
+      sliderContainer.addEventListener('mouseleave', startAutoSlide);
+      
+      let startX = 0;
+      let endX = 0;
+      
+      sliderContainer.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        stopAutoSlide();
+      }, { passive: true });
+      
+      sliderContainer.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) {
+          showSlide(currentSlide + 1);
+        } else if (endX - startX > 50) {
+          showSlide(currentSlide - 1);
+        }
+        startAutoSlide();
+      }, { passive: true });
+    }
+  }
+}
+
+// 23. Latest News & Events Page Functionality
+// Mock Database for Events Details & Gallery images
+const EVENTS_DB = {
+  "up-1": {
+    title: "Science Exhibition 2026",
+    date: "May 25, 2026",
+    time: "10:00 AM – 2:00 PM",
+    venue: "School Auditorium",
+    guest: "Dr. K. Sivan (Ex-Chairman, ISRO)",
+    desc: "Students will showcase innovative science projects, working models, and robotics designs. The theme of this year's exhibition is 'Sustainable Futures & AI Technology'. Visiting parents and external school delegates will interact with the young innovators.",
+    images: ["images/achievement-1.jpg", "images/gallery-2.jpg", "images/gallery-8.jpg"]
+  },
+  "up-2": {
+    title: "Annual Sports Day",
+    date: "November 15, 2026",
+    time: "09:00 AM – 4:00 PM",
+    venue: "School Sports Ground",
+    guest: "Shri Venkatesh Prasad (Former Indian Cricketer)",
+    desc: "A day filled with competitive track and field events including sprints, relays, long jump, shot put, and inter-house volleyball tournaments. The event will commence with a magnificent march-past and torch-lighting ceremony.",
+    images: ["images/facility-4.jpg", "images/gallery-7.jpg", "images/gallery-3.jpg"]
+  },
+  "up-3": {
+    title: "Inter School Debate",
+    date: "July 10, 2026",
+    time: "11:00 AM – 1:00 PM",
+    venue: "Seminar Hall",
+    guest: "Dr. Arundhati Roy (Eminent Author & Speaker)",
+    desc: "A battle of wits where speakers from across 15 regional schools debate critical current topics, focusing on 'The Impact of Social Media on Child Psychology'. Winners will receive cash awards and the rotating school trophy.",
+    images: ["images/gallery-3.jpg", "images/gallery-6.jpg", "images/video-thumb-1.jpg"]
+  },
+  "up-4": {
+    title: "International Yoga Day",
+    date: "June 21, 2026",
+    time: "07:30 AM – 9:00 AM",
+    venue: "Open Assembly Area",
+    guest: "Yogi Anand Swaroop (Yoga Practitioner & Philosopher)",
+    desc: "A peaceful morning assembly with all classes and teachers participating in general posturing, breathing exercises, and meditation workshops. Special focus on postures that improve posture, attention span, and reduce academic stress.",
+    images: ["images/yoga.jpeg", "images/gallery-4.jpg"]
+  },
+  "up-5": {
+    title: "Drawing Competition",
+    date: "August 12, 2026",
+    time: "10:30 AM – 12:30 PM",
+    venue: "Drawing Hall",
+    guest: "Smt. Roopa Sen (Visual Artist & Painter)",
+    desc: "Coloring and sketch contest divided into junior, sub-junior, and senior blocks. Students will express creative viewpoints on 'Environmental Protection and Tree Conservations'. High-grade coloring materials will be provided.",
+    images: ["images/gallery-5.jpg", "images/gallery-6.jpg"]
+  },
+  "up-6": {
+    title: "Parent Orientation",
+    date: "June 05, 2026",
+    time: "09:30 AM – 11:30 AM",
+    venue: "Conference Room",
+    guest: "Mrs. Meera Nadgoud (Child Psychologist & Counselor)",
+    desc: "Interaction assembly explaining academic schedules, child guidance guidelines, evaluations, and smart classes procedures. Highly recommended for parents of newly admitted students to coordinate home-school synergy.",
+    images: ["images/gallery-8.jpg", "images/gallery-1.jpg"]
+  },
+  "up-7": {
+    title: "Environment Day",
+    date: "June 05, 2026",
+    time: "08:00 AM – 10:00 AM",
+    venue: "Campus Grounds",
+    guest: "Shri Salumarada Thimmakka (Environmental Activist)",
+    desc: "Active plantation drive where students plant herbal and shady saplings in campus blocks. Special address on conservation, recycling, and keeping a plastic-free surrounding.",
+    images: ["images/gallery-4.jpg", "images/gallery-5.jpg"]
+  },
+  "up-8": {
+    title: "Computer Workshop",
+    date: "October 18, 2026",
+    time: "10:00 AM – 01:00 PM",
+    venue: "Computer Lab",
+    guest: "Dr. Rajesh Patil (Professor of Computer Applications)",
+    desc: "Hands-on tech session covering block programming, basic HTML structures, and introduction to artificial intelligence algorithms. Targeted for grades 8 to 10 to encourage coding fluency.",
+    images: ["images/video-thumb-3.jpg", "images/video-thumb-4.jpg"]
+  },
+  "comp-1": {
+    title: "Annual Day Celebration",
+    images: ["images/gallery-6.jpg", "images/gallery-4.jpg", "images/gallery-2.jpg", "images/gallery-8.jpg"]
+  },
+  "comp-2": {
+    title: "Science Exhibition",
+    images: ["images/gallery-2.jpg", "images/achievement-1.jpg", "images/gallery-1.jpg"]
+  },
+  "comp-3": {
+    title: "Teachers Day",
+    images: ["images/gallery-4.jpg", "images/gallery-8.jpg", "images/logo.jpeg"]
+  },
+  "comp-4": {
+    title: "Children's Day",
+    images: ["images/gallery-8.jpg", "images/gallery-5.jpg", "images/gallery-6.jpg"]
+  },
+  "comp-5": {
+    title: "Sports Meet",
+    images: ["images/gallery-7.jpg", "images/gallery-3.jpg", "images/facility-4.jpg"]
+  },
+  "comp-6": {
+    title: "Kannada Rajyotsava",
+    images: ["images/gallery-1.jpg", "images/logo.jpeg", "images/gallery-4.jpg"]
+  },
+  "comp-7": {
+    title: "Quiz Competition",
+    images: ["images/gallery-2.jpg", "images/achievement-1.jpg", "images/gallery-3.jpg"]
+  },
+  "comp-8": {
+    title: "Farewell Ceremony",
+    images: ["images/gallery-8.jpg", "images/gallery-6.jpg", "images/gallery-1.jpg"]
+  }
+};
+
+let sliderImages = [];
+let currentSliderIndex = 0;
+
+function initNewsEventsPage() {
+  const btnSwitchUpcoming = document.getElementById('btn-switch-upcoming');
+  const btnSwitchCompleted = document.getElementById('btn-switch-completed');
+  const sectionUpcoming = document.getElementById('section-upcoming');
+  const sectionCompleted = document.getElementById('section-completed');
+  const scrollContainer = document.querySelector('.month-scroll-container');
+  
+  if (!btnSwitchUpcoming && !btnSwitchCompleted && !scrollContainer) return;
+
+  let currentTab = 'upcoming';
+  let searchQuery = '';
+  let selectedCategory = 'all';
+  let selectedYear = 'all';
+  let selectedMonth = 'all';
+
+  // Toggle sections
+  if (btnSwitchUpcoming && btnSwitchCompleted) {
+    btnSwitchUpcoming.addEventListener('click', () => {
+      btnSwitchUpcoming.classList.add('active');
+      btnSwitchCompleted.classList.remove('active');
+      if (sectionUpcoming) sectionUpcoming.style.display = 'block';
+      if (sectionCompleted) sectionCompleted.style.display = 'none';
+      currentTab = 'upcoming';
+      applyFilters();
+    });
+
+    btnSwitchCompleted.addEventListener('click', () => {
+      btnSwitchCompleted.classList.add('active');
+      btnSwitchUpcoming.classList.remove('active');
+      if (sectionCompleted) sectionCompleted.style.display = 'block';
+      if (sectionUpcoming) sectionUpcoming.style.display = 'none';
+      currentTab = 'completed';
+      applyFilters();
+    });
+    
+    [btnSwitchUpcoming, btnSwitchCompleted].forEach(btn => {
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
+    });
+  }
+
+  // Month Scroll arrow buttons
+  const btnPrev = document.querySelector('.month-scroll-wrapper .btn-prev');
+  const btnNext = document.querySelector('.month-scroll-wrapper .btn-next');
+  if (scrollContainer) {
+    if (btnPrev) {
+      btnPrev.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+      });
+    }
+    if (btnNext) {
+      btnNext.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+      });
+    }
+  }
+
+  // Search & Filter event bindings
+  const searchInput = document.getElementById('event-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', applyFilters);
+  }
+
+  const yearFilter = document.getElementById('filter-year');
+  if (yearFilter) {
+    yearFilter.addEventListener('change', applyFilters);
+  }
+
+  const upcomingCategory = document.getElementById('upcoming-category');
+  if (upcomingCategory) {
+    upcomingCategory.addEventListener('change', applyFilters);
+  }
+
+  const completedCategory = document.getElementById('completed-category');
+  if (completedCategory) {
+    completedCategory.addEventListener('change', applyFilters);
+  }
+
+  // Month buttons click binding
+  const monthButtons = document.querySelectorAll('.month-filter-btn');
+  monthButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      monthButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedMonth = btn.getAttribute('data-month');
+      applyFilters();
+    });
+  });
+
+  // Main filter function
+  function applyFilters() {
+    searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    selectedYear = yearFilter ? yearFilter.value : 'all';
+    
+    const activeCategorySelect = (currentTab === 'upcoming') ? upcomingCategory : completedCategory;
+    selectedCategory = activeCategorySelect ? activeCategorySelect.value : 'all';
+
+    const cards = document.querySelectorAll(
+      currentTab === 'upcoming' 
+        ? '#upcoming-events-grid .event-card-fancy' 
+        : '#completed-events-grid .event-card-fancy'
+    );
+
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const title = card.querySelector('.event-title-fancy').textContent.toLowerCase();
+      const desc = card.querySelector('.event-desc-fancy').textContent.toLowerCase();
+      const category = card.getAttribute('data-category');
+      const year = card.getAttribute('data-year');
+      const month = card.getAttribute('data-month');
+
+      const matchesSearch = title.includes(searchQuery) || desc.includes(searchQuery);
+      const matchesCategory = (selectedCategory === 'all' || category === selectedCategory);
+      const matchesYear = (selectedYear === 'all' || year === selectedYear);
+      const matchesMonth = (selectedMonth === 'all' || month === selectedMonth);
+
+      if (matchesSearch && matchesCategory && matchesYear && matchesMonth) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    const upcomingNoResults = document.getElementById('upcoming-no-results');
+    const completedNoResults = document.getElementById('completed-no-results');
+
+    if (currentTab === 'upcoming' && upcomingNoResults) {
+      upcomingNoResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+    } else if (currentTab === 'completed' && completedNoResults) {
+      completedNoResults.style.display = (visibleCount === 0) ? 'block' : 'none';
+    }
+  }
+
+  // Backdrop modal close
+  const detailsModal = document.getElementById('details-modal');
+  if (detailsModal) {
+    detailsModal.addEventListener('click', (e) => {
+      if (e.target === detailsModal) closeDetailsModal();
+    });
+  }
+
+  const galleryModal = document.getElementById('gallery-modal');
+  if (galleryModal) {
+    galleryModal.addEventListener('click', (e) => {
+      if (e.target === galleryModal) closeGalleryModal();
+    });
+  }
+}
+
+// Modal actions (declared globally so inline html onclick can invoke them)
+window.openDetailsModal = function(id) {
+  const eventData = EVENTS_DB[id];
+  if (!eventData) return;
+
+  const modal = document.getElementById('details-modal');
+  const img = document.getElementById('modal-details-img');
+  const title = document.getElementById('modal-details-title');
+  const date = document.getElementById('modal-details-date');
+  const time = document.getElementById('modal-details-time');
+  const venue = document.getElementById('modal-details-venue');
+  const guest = document.getElementById('modal-details-guest');
+  const desc = document.getElementById('modal-details-desc');
+  const galleryContainer = document.getElementById('modal-details-gallery');
+
+  if (modal && img && title && date && time && venue && guest && desc && galleryContainer) {
+    img.src = eventData.images[0] || 'images/logo.jpeg';
+    title.textContent = eventData.title;
+    date.textContent = eventData.date;
+    time.textContent = eventData.time;
+    venue.textContent = eventData.venue;
+    guest.textContent = eventData.guest;
+    desc.textContent = eventData.desc;
+
+    galleryContainer.innerHTML = '';
+    eventData.images.forEach(src => {
+      const thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.alt = eventData.title;
+      thumb.addEventListener('click', () => {
+        img.src = src;
+      });
+      galleryContainer.appendChild(thumb);
+    });
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeDetailsModal = function() {
+  const modal = document.getElementById('details-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+window.openGalleryModal = function(id) {
+  const eventData = EVENTS_DB[id];
+  if (!eventData || !eventData.images) return;
+
+  sliderImages = eventData.images;
+  currentSliderIndex = 0;
+
+  const modal = document.getElementById('gallery-modal');
+  const title = document.getElementById('modal-gallery-title');
+
+  if (modal && title) {
+    title.textContent = eventData.title;
+    updateSliderImage();
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+function updateSliderImage() {
+  const img = document.getElementById('modal-gallery-img');
+  const counter = document.getElementById('modal-gallery-counter');
+  if (img && counter && sliderImages.length > 0) {
+    img.src = sliderImages[currentSliderIndex];
+    counter.textContent = `Image ${currentSliderIndex + 1} of ${sliderImages.length}`;
+  }
+}
+
+window.changeSlide = function(direction) {
+  if (sliderImages.length === 0) return;
+  currentSliderIndex = (currentSliderIndex + direction + sliderImages.length) % sliderImages.length;
+  updateSliderImage();
+};
+
+window.closeGalleryModal = function() {
+  const modal = document.getElementById('gallery-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  sliderImages = [];
+};
 
