@@ -3,11 +3,9 @@
 
 <head>
   <script>
-    (function() {
-      const isReload = (window.performance && window.performance.navigation && window.performance.navigation.type === 1) ||
-                       (window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0] && window.performance.getEntriesByType('navigation')[0].type === 'reload');
+    (function () {
       const isFirstLoad = !sessionStorage.getItem("schoolLoader");
-      if (isFirstLoad || isReload) {
+      if (isFirstLoad) {
         document.documentElement.classList.add("loading-active");
       }
     })();
@@ -16,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sujnana National Public School | Home</title>
   <meta name="description"
-    content="Welcome to Sujnana National Public School, managed by Shri Yalaguresh Educational Trust (R). Nurturing minds, shaping futures with modern educational facilities.">
+    content="Welcome to Sujnana National Public School, managed by Shree Yalaguresh Education Trust (R). Nurturing minds, shaping futures with modern educational facilities.">
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Style Sheet -->
@@ -25,36 +23,7 @@
 
 <body>
 
-  <!-- Welcome Popup Modal -->
-  <div id="welcome-popup" class="welcome-popup-overlay">
-    <div class="welcome-popup-card">
-      <button class="welcome-popup-close" id="close-welcome-popup" aria-label="Close Welcome Popup">&times;</button>
-      
-      <!-- Background Decorative Light Icons -->
-      <div class="welcome-popup-bg-icons">
-        <i class="fas fa-book welcome-icon-bg"></i>
-        <i class="fas fa-graduation-cap welcome-icon-bg"></i>
-        <i class="fas fa-microscope welcome-icon-bg"></i>
-        <i class="fas fa-pencil-alt welcome-icon-bg"></i>
-        <i class="fas fa-palette welcome-icon-bg"></i>
-      </div>
-      
-      <!-- Dotted Elements -->
-      <div class="welcome-dots dots-top-left"></div>
-      <div class="welcome-dots dots-bottom-right"></div>
-      
-      <div class="welcome-popup-content">
-        <div class="welcome-logo-wrapper">
-          <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="welcome-logo">
-        </div>
-        <span class="welcome-subtitle">Welcome to</span>
-        <h2 class="welcome-title">SUJNANA<br><span class="highlight">NATIONAL PUBLIC SCHOOL</span></h2>
-        <p class="welcome-tagline">Nurturing Minds, Building Futures.</p>
-        <p class="welcome-small-text">Empowering every child to learn, grow and shine.</p>
-        <button class="welcome-popup-btn" id="btn-begin">Let’s Begin <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-  </div>
+
 
   <!-- Common Header -->
   <header>
@@ -82,7 +51,7 @@
           <a href="index.html" class="logo-container">
             <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="logo-img">
             <div class="logo-text">
-              <span class="trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <span class="trust-name">Shree Yalaguresh Education Trust (R)</span>
               <span class="school-name">SUJNANA NATIONAL PUBLIC SCHOOL</span>
             </div>
           </a>
@@ -187,18 +156,18 @@
         <!-- Topper 1 -->
         <div class="topper-card">
           <div class="topper-img-wrapper">
-            <img src="images/topper-1.jpg" alt="Topper 1" class="topper-img">
+            <img src="images/topper-1.png" alt="Topper 1" class="topper-img">
           </div>
           <div class="topper-info">
             <span class="topper-rank">Rank 1</span>
-            <h3 class="topper-name">Ananya Patil</h3>
-            <p class="topper-percentage" style="color: var(--yellow);">98.6%</p>
+            <h3 class="topper-name">Haripriya Parvatikar </h3>
+            <p class="topper-percentage" style="color: var(--yellow);">98.88%</p>
           </div>
         </div>
         <!-- Topper 2 -->
         <div class="topper-card">
           <div class="topper-img-wrapper">
-            <img src="images/topper-2.jpg" alt="Topper 2" class="topper-img">
+            <img src="images/topper-2.png" alt="Topper 2" class="topper-img">
           </div>
           <div class="topper-info">
             <span class="topper-rank">Rank 2</span>
@@ -209,7 +178,7 @@
         <!-- Topper 3 -->
         <div class="topper-card">
           <div class="topper-img-wrapper">
-            <img src="images/topper-3.jpg" alt="Topper 3" class="topper-img">
+            <img src="images/topper-3.png" alt="Topper 3" class="topper-img">
           </div>
           <div class="topper-info">
             <span class="topper-rank">Rank 3</span>
@@ -500,7 +469,7 @@
             <p class="leadership-block-para">Welcome to Sujnana National Public School. Our mission is to empower
               students through knowledge, values, leadership, and lifelong learning. We encourage every child to
               explore, achieve, and become their best.</p>
-            <span class="leadership-block-name">Principal Name</span>
+            <span class="leadership-block-name">Smt. SAROJA P. JOSHI</span>
             <a href="about.html#principal" class="btn-yellow-sm">Read Full Message <i
                 class="fas fa-arrow-right"></i></a>
           </div>
@@ -509,13 +478,13 @@
         <!-- 3. Chairman's Message -->
         <div class="leadership-block img-left-text-right">
           <div class="leadership-block-img">
-            <img src="images/chairman.JPG" alt="Chairman of Shri Yalaguresh Educational Trust" class="leadership-img">
+            <img src="images/chairman.JPG" alt="Chairman of Shree Yalaguresh Education Trust" class="leadership-img">
           </div>
           <div class="leadership-block-content">
             <h3 class="leadership-block-title">Chairman’s Message</h3>
             <p class="leadership-block-para">At Sujnana Trust, we believe education transforms lives. Our commitment is
               to provide quality education and create opportunities for every student to succeed.</p>
-            <span class="leadership-block-name">Chairman Name</span>
+            <span class="leadership-block-name">Shri. PRANESH H. JOSHI</span>
             <a href="about.html#chairman" class="btn-yellow-sm">View Message <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
@@ -761,7 +730,8 @@
           <i class="fas fa-headset"></i>
         </div>
         <h3 class="contact-team-title">CONTACT<br><span>OUR TEAM</span></h3>
-        <p class="contact-team-desc">For any queries, support, school information, or assistance, our team is here to help you.</p>
+        <p class="contact-team-desc">For any queries, support, school information, or assistance, our team is here to
+          help you.</p>
         <a href="contact.html" class="enquiry-mobile-btn">CONTACT OUR TEAM <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
@@ -776,7 +746,7 @@
           <div class="footer-logo-container">
             <img src="images/logo.jpeg" alt="SNPS Logo" class="footer-logo-img">
             <div>
-              <span class="footer-trust-name">Shri Yalaguresh Educational Trust (R)</span>
+              <span class="footer-trust-name">Shree Yalaguresh Education Trust (R)</span>
               <h4 class="footer-school-name">SUJNANA NATIONAL PUBLIC SCHOOL</h4>
             </div>
           </div>
@@ -802,7 +772,8 @@
                   style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
             <li><a href="facilities.html"><i class="fas fa-chevron-right"
                   style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
-            <li><a href="achievements.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Achievements</a></li>
+            <li><a href="achievements.html"><i class="fas fa-chevron-right"
+                  style="font-size: 0.75rem; margin-right: 8px;"></i> Achievements</a></li>
             <li><a href="gallery.html"><i class="fas fa-chevron-right"
                   style="font-size: 0.75rem; margin-right: 8px;"></i> Gallery</a></li>
             <li><a href="contact.html"><i class="fas fa-chevron-right"
@@ -850,7 +821,7 @@
       <!-- Copyright Bottom -->
       <div class="footer-bottom">
         <div class="footer-bottom-flex">
-          <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shri Yalaguresh Educational Trust (R).</p>
+          <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shree Yalaguresh Education Trust (R).</p>
           <div class="footer-legal-links">
             <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
             <a href="terms.html" class="footer-legal-link">Terms & Conditions</a>

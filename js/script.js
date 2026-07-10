@@ -4,20 +4,9 @@
                      window.location.pathname === '/' || 
                      window.location.pathname.endsWith('/');
   
-  // If user visits another page first, popup should not appear again
-  if (!isHomepage) {
-    sessionStorage.setItem("welcomePopupShown", "true");
-  }
-  const isReload = (window.performance && window.performance.navigation && window.performance.navigation.type === 1) ||
-                   (window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0] && window.performance.getEntriesByType('navigation')[0].type === 'reload');
-  
-  if (isReload) {
-    sessionStorage.removeItem("welcomePopupShown");
-  }
-
   const isFirstLoad = !sessionStorage.getItem("schoolLoader");
 
-  if (isHomepage && (isFirstLoad || isReload)) {
+  if (isHomepage && isFirstLoad) {
     // 1. Create the loader HTML structure
     const loaderHtml = `
       <div id="school-loader">
@@ -60,7 +49,7 @@
           if (!progressBar) return;
           
           let progress = 0;
-          const duration = 2500; // 2.5 seconds total loading duration
+          const duration = 800; // 0.8 seconds total loading duration
           const intervalTime = 15; // smooth updates every 15ms
           const step = (intervalTime / duration) * 100;
           
@@ -81,14 +70,9 @@
                     loader.remove();
                     document.documentElement.classList.remove('loading-active');
                     sessionStorage.setItem("schoolLoader", "true");
-                    
-                    // Trigger Welcome Popup after loader closes
-                    if (typeof initWelcomePopupShow === 'function') {
-                      initWelcomePopupShow();
-                    }
-                  }, 800); // 800ms matching CSS transition
+                  }, 400); // 400ms matching CSS transition
                 }
-              }, 300); // short delay at 100% for premium feel
+              }, 100); // short delay at 100% for premium feel
             }
             progressBar.style.width = progress + '%';
           }, intervalTime);
@@ -145,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initToppersPage();
   initScrollReveal();
   initFooterLinks();
-  initWelcomePopup();
   initAchievementsPageFilters();
   initAchievementsToppersSlider();
   initNewsEventsPage();
@@ -928,52 +911,7 @@ function initFooterLinks() {
   });
 }
 
-// 20. Welcome Popup functions
-function initWelcomePopup() {
-  const isHomepage = window.location.pathname.endsWith('index.html') || 
-                     window.location.pathname === '/' || 
-                     window.location.pathname.endsWith('/');
-  if (!isHomepage) return;
 
-  const popup = document.getElementById('welcome-popup');
-  if (!popup) return;
-
-  const btnBegin = document.getElementById('btn-begin');
-  const btnClose = document.getElementById('close-welcome-popup');
-
-  const closePopup = () => {
-    popup.classList.remove('active');
-    document.body.classList.remove('popup-active');
-    document.documentElement.classList.remove('popup-active');
-    sessionStorage.setItem("welcomePopupShown", "true");
-  };
-
-  if (btnBegin) btnBegin.addEventListener('click', closePopup);
-  if (btnClose) btnClose.addEventListener('click', closePopup);
-  
-  // Close on clicking outside the card
-  popup.addEventListener('click', (e) => {
-    if (e.target === popup) {
-      closePopup();
-    }
-  });
-}
-
-function initWelcomePopupShow() {
-  const popup = document.getElementById('welcome-popup');
-  const popupShown = sessionStorage.getItem("welcomePopupShown");
-  
-  if (popup && !popupShown) {
-    // Add scroll lock
-    document.body.classList.add('popup-active');
-    document.documentElement.classList.add('popup-active');
-    
-    // Show popup overlay and modal
-    setTimeout(() => {
-      popup.classList.add('active');
-    }, 100);
-  }
-}
 
 // 21. Achievements Page Category Filter
 function initAchievementsPageFilters() {
