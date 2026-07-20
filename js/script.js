@@ -1,9 +1,9 @@
 // Check sessionStorage to decide if we should show the loader
-(function() {
-  const isHomepage = window.location.pathname.endsWith('index.html') || 
-                     window.location.pathname === '/' || 
-                     window.location.pathname.endsWith('/');
-  
+(function () {
+  const isHomepage = window.location.pathname.endsWith('index.html') ||
+    window.location.pathname === '/' ||
+    window.location.pathname.endsWith('/');
+
   const isFirstLoad = !sessionStorage.getItem("schoolLoader");
 
   if (isHomepage && isFirstLoad) {
@@ -35,7 +35,7 @@
         tempDiv.innerHTML = loaderHtml.trim();
         const loaderElement = tempDiv.firstChild;
         document.body.insertBefore(loaderElement, document.body.firstChild);
-        
+
         // Ensure html.loading-active is set
         document.documentElement.classList.add("loading-active");
 
@@ -43,28 +43,28 @@
         const bgImg = new Image();
         const logoImg = new Image();
         let loadedCount = 0;
-        
+
         const startProgressBar = () => {
           const progressBar = document.getElementById('loader-progress-bar');
           if (!progressBar) return;
-          
+
           let progress = 0;
           const duration = 800; // 0.8 seconds total loading duration
           const intervalTime = 15; // smooth updates every 15ms
           const step = (intervalTime / duration) * 100;
-          
+
           const interval = setInterval(() => {
             progress += step;
             if (progress >= 100) {
               progress = 100;
               clearInterval(interval);
-              
+
               // End loader
               setTimeout(() => {
                 const loader = document.getElementById('school-loader');
                 if (loader) {
                   loader.classList.add('fade-out');
-                  
+
                   // After transition ends, remove loader completely and clear classes
                   setTimeout(() => {
                     loader.remove();
@@ -96,7 +96,7 @@
         setTimeout(injectLoader, 10);
       }
     };
-    
+
     // Inject as early as possible
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", injectLoader);
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavbar() {
   const currentPath = window.location.pathname;
   const pageName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
-  
+
   // Desktop menu links
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
@@ -167,13 +167,13 @@ function initMobileMenu() {
   const hamburger = document.querySelector('.hamburger');
   const mobileNav = document.querySelector('.mobile-nav');
   const overlay = document.querySelector('.mobile-nav-overlay');
-  
+
   if (hamburger && mobileNav && overlay) {
     const toggleMenu = () => {
       hamburger.classList.toggle('active');
       mobileNav.classList.toggle('active');
       overlay.classList.toggle('active');
-      
+
       // Toggle body scroll lock
       if (mobileNav.classList.contains('active')) {
         document.body.style.overflow = 'hidden';
@@ -215,7 +215,7 @@ function initStickyHeader() {
 function initFacilitiesSlider() {
   const slides = document.querySelectorAll('.facility-slide');
   const dots = document.querySelectorAll('.facility-dot');
-  
+
   if (slides.length > 0) {
     let currentSlide = 0;
     let slideInterval;
@@ -223,7 +223,7 @@ function initFacilitiesSlider() {
     const showSlide = (n) => {
       slides.forEach(slide => slide.classList.remove('active'));
       dots.forEach(dot => dot.classList.remove('active'));
-      
+
       currentSlide = (n + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
       if (dots[currentSlide]) {
@@ -269,7 +269,7 @@ function initFacilitiesSlider() {
 function initAchievementsSlider() {
   const slides = document.querySelectorAll('.achievement-slide');
   const dots = document.querySelectorAll('.achievement-dot');
-  
+
   if (slides.length > 0) {
     let currentSlide = 0;
     let slideInterval;
@@ -277,7 +277,7 @@ function initAchievementsSlider() {
     const showSlide = (n) => {
       slides.forEach(slide => slide.classList.remove('active'));
       dots.forEach(dot => dot.classList.remove('active'));
-      
+
       currentSlide = (n + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
       if (dots[currentSlide]) {
@@ -319,7 +319,7 @@ function initAchievementsSlider() {
 function initGalleryFilter() {
   const filters = document.querySelectorAll('.filter-btn');
   const items = document.querySelectorAll('.gallery-item');
-  
+
   if (filters.length > 0 && items.length > 0) {
     filters.forEach(filter => {
       filter.addEventListener('click', () => {
@@ -327,9 +327,9 @@ function initGalleryFilter() {
         filters.forEach(btn => btn.classList.remove('active'));
         // Add active to clicked
         filter.classList.add('active');
-        
+
         const category = filter.getAttribute('data-filter');
-        
+
         items.forEach(item => {
           const itemCategory = item.getAttribute('data-category');
           if (category === 'all' || category === itemCategory) {
@@ -349,70 +349,29 @@ function initGalleryTabs() {
   const videoTabBtn = document.getElementById('tab-videos');
   const photoGallery = document.querySelector('.photos-tab-content');
   const videoGallery = document.querySelector('.videos-tab-content');
-  
+
   if (photoTabBtn && videoTabBtn && photoGallery && videoGallery) {
     photoTabBtn.addEventListener('click', () => {
       photoTabBtn.classList.add('active');
       videoTabBtn.classList.remove('active');
-      
+
       photoGallery.style.display = 'block';
       videoGallery.style.display = 'none';
     });
-    
+
     videoTabBtn.addEventListener('click', () => {
       videoTabBtn.classList.add('active');
       photoTabBtn.classList.remove('active');
-      
-      videoGallery.style.display = 'grid';
+
+      videoGallery.style.display = 'block';
       photoGallery.style.display = 'none';
     });
   }
 }
 
-// 7.5. Render Videos Dynamically
+// 7.5. Render Videos Dynamically (Disabled since videos are now static in gallery.html for easy editing)
 function initVideoGallery() {
-  const container = document.getElementById('video-gallery-container');
-  if (container) {
-    const schoolVideos = [
-      {
-        title: "Annual Day Celebrations 2025-26",
-        thumbnail: "images/video-thumb-1.jpg",
-        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-        date: "Jan 12, 2026"
-      },
-      {
-        title: "Independence Day Parade & Events",
-        thumbnail: "images/video-thumb-2.jpg",
-        videoUrl: "https://www.w3schools.com/html/movie.mp4",
-        date: "Aug 15, 2025"
-      },
-      {
-        title: "Sujnana Sci-Quest Exhibition",
-        thumbnail: "images/video-thumb-3.jpg",
-        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-        date: "May 28, 2026"
-      },
-      {
-        title: "Inter-school Volleyball Championship Finals",
-        thumbnail: "images/video-thumb-4.jpg",
-        videoUrl: "https://www.w3schools.com/html/movie.mp4",
-        date: "Oct 22, 2025"
-      }
-    ];
-
-    container.innerHTML = schoolVideos.map(video => `
-      <div class="video-card">
-        <div class="video-thumb-wrapper" data-video="${video.videoUrl}">
-          <img src="${video.thumbnail}" alt="${video.title}" class="video-thumb">
-          <div class="video-play-btn"><i class="fas fa-play"></i></div>
-        </div>
-        <div class="video-info">
-          <h4 class="video-title">${video.title}</h4>
-          <span class="video-date"><i class="far fa-calendar-alt"></i> ${video.date}</span>
-        </div>
-      </div>
-    `).join('');
-  }
+  // Video items are now written directly inside gallery.html for easy editing and adding new videos.
 }
 
 // 8. Contact Form and Enquiry Form validations
@@ -446,15 +405,15 @@ function initFormValidations() {
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const nameInput = document.getElementById('contactName');
       const emailInput = document.getElementById('contactEmail');
       const phoneInput = document.getElementById('contactPhone');
       const subjectInput = document.getElementById('contactSubject');
       const messageInput = document.getElementById('contactMessage');
-      
+
       let isValid = true;
-      
+
       if (nameInput) {
         isValid = validateField(nameInput, namePattern, 'Please enter a valid name (letters only, min 2 chars)') && isValid;
       }
@@ -509,14 +468,14 @@ function initFormValidations() {
   if (enquiryForm) {
     enquiryForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
+
       const nameInput = document.getElementById('enqName');
       const emailInput = document.getElementById('enqEmail');
       const phoneInput = document.getElementById('enqPhone');
       const gradeInput = document.getElementById('enqGrade');
-      
+
       let isValid = true;
-      
+
       if (nameInput) {
         isValid = validateField(nameInput, namePattern, 'Please enter a valid name (letters only)') && isValid;
       }
@@ -554,7 +513,7 @@ function initFormValidations() {
 // 9. Smooth Scroll to anchors
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const targetId = this.getAttribute('href');
       if (targetId !== '#') {
         const targetElement = document.querySelector(targetId);
@@ -572,7 +531,7 @@ function initSmoothScroll() {
 // 10. Back to Top Button
 function initBackToTop() {
   const backToTopBtn = document.querySelector('.back-to-top');
-  
+
   if (backToTopBtn) {
     window.addEventListener('scroll', () => {
       if (window.scrollY > 400) {
@@ -581,7 +540,7 @@ function initBackToTop() {
         backToTopBtn.classList.remove('show');
       }
     });
-    
+
     backToTopBtn.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
@@ -596,44 +555,79 @@ function initLightbox() {
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxVideo = document.getElementById('lightbox-video');
+  const lightboxIframe = document.getElementById('lightbox-iframe');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const closeBtn = document.getElementById('lightbox-close');
-  
+
+  const lightboxYoutubeFallback = document.getElementById('lightbox-youtube-fallback');
+  const lightboxYoutubeLink = document.getElementById('lightbox-youtube-link');
+
   const galleryItems = document.querySelectorAll('.gallery-item');
-  const videoThumbnails = document.querySelectorAll('.video-thumb-wrapper');
+  const videoThumbnails = document.querySelectorAll('.video-thumb-wrapper, .video-card');
 
   if (lightbox && closeBtn) {
     // Open image lightbox
     galleryItems.forEach(item => {
       item.addEventListener('click', () => {
-        const img = item.querySelector('img');
-        const title = item.querySelector('.gallery-item-title');
-        
+        const img = item.querySelector('img') || item.querySelector('.gallery-img');
+        const title = item.querySelector('.gallery-item-title') || item.querySelector('.gallery-overlay-title') || item.querySelector('h4');
+
         if (img) {
           lightboxImg.src = img.src;
           lightboxImg.style.display = 'block';
-          lightboxVideo.style.display = 'none';
-          lightboxCaption.textContent = title ? title.textContent : 'School Gallery';
+          if (lightboxVideo) {
+            lightboxVideo.pause();
+            lightboxVideo.style.display = 'none';
+          }
+          if (lightboxIframe) {
+            lightboxIframe.src = '';
+            lightboxIframe.style.display = 'none';
+          }
+          if (lightboxYoutubeFallback) lightboxYoutubeFallback.style.display = 'none';
+          lightboxCaption.textContent = title ? title.textContent.trim() : '';
+          if (lightboxCaption) lightboxCaption.style.display = title ? 'block' : 'none';
           lightbox.style.display = 'flex';
           document.body.style.overflow = 'hidden';
         }
       });
     });
 
-    // Open video lightbox (mocking video player since these are demo links)
+    // Open video lightbox in the website modal
     videoThumbnails.forEach(wrapper => {
-      wrapper.addEventListener('click', () => {
-        const card = wrapper.closest('.video-card');
+      wrapper.addEventListener('click', (e) => {
+        // If clicking on a link or button (such as Watch on YouTube link below thumbnail), let it navigate naturally
+        if (e.target.closest('a')) return;
+
+        e.stopPropagation();
+
+        const actualWrapper = wrapper.classList.contains('video-thumb-wrapper') ? wrapper : wrapper.querySelector('.video-thumb-wrapper');
+        if (!actualWrapper) return;
+
+        const card = actualWrapper.closest('.video-card');
         const title = card ? card.querySelector('.video-title').textContent : 'School Video';
-        
-        // In a real application, you'd insert a youtube/vimeo/cloudinary iframe.
-        // We will insert a placeholder video player or show a alert for demo URL.
-        const videoUrl = wrapper.getAttribute('data-video');
-        
-        lightboxVideo.src = videoUrl;
-        lightboxVideo.style.display = 'block';
-        lightboxImg.style.display = 'none';
-        lightboxCaption.textContent = title;
+        let videoUrl = actualWrapper.getAttribute('data-video');
+        if (videoUrl) videoUrl = videoUrl.trim();
+
+        const isYouTube = videoUrl && (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be'));
+
+        if (isYouTube) {
+          window.open(videoUrl, '_blank');
+          return;
+        } else {
+          if (lightboxVideo) {
+            lightboxVideo.src = videoUrl;
+            lightboxVideo.style.display = 'block';
+            lightboxVideo.play().catch(err => console.log('Autoplay prevented:', err));
+            if (lightboxIframe) {
+              lightboxIframe.src = '';
+              lightboxIframe.style.display = 'none';
+            }
+            if (lightboxImg) lightboxImg.style.display = 'none';
+            if (lightboxYoutubeFallback) lightboxYoutubeFallback.style.display = 'none';
+          }
+        }
+
+        lightboxCaption.textContent = title ? title.trim() : 'School Video';
         lightbox.style.display = 'flex';
         document.body.style.overflow = 'hidden';
       });
@@ -642,8 +636,22 @@ function initLightbox() {
     // Close lightbox
     const closeLightbox = () => {
       lightbox.style.display = 'none';
-      lightboxImg.src = '';
-      lightboxVideo.src = '';
+      if (lightboxImg) {
+        lightboxImg.src = '';
+        lightboxImg.style.display = 'none';
+      }
+      if (lightboxVideo) {
+        lightboxVideo.pause();
+        lightboxVideo.src = '';
+        lightboxVideo.style.display = 'none';
+      }
+      if (lightboxIframe) {
+        lightboxIframe.src = '';
+        lightboxIframe.style.display = 'none';
+      }
+      if (lightboxYoutubeFallback) {
+        lightboxYoutubeFallback.style.display = 'none';
+      }
       document.body.style.overflow = '';
     };
 
@@ -687,7 +695,7 @@ function initHomeHero() {
     // Helper: Start the video playback state
     const playVideo = () => {
       isPlayingVideo = true;
-      
+
       // Stop and clear photo sliders
       clearTimeout(photoTimeout);
       slides.forEach(slide => slide.classList.remove('active'));
@@ -700,7 +708,7 @@ function initHomeHero() {
       // Show and play video
       video.classList.add('active');
       video.currentTime = 0;
-      
+
       // Play the video programmatically
       const playPromise = video.play();
       if (playPromise !== undefined) {
@@ -714,7 +722,7 @@ function initHomeHero() {
     // Helper: Transition to Photo Slideshow
     const startPhotoSlider = () => {
       isPlayingVideo = false;
-      
+
       // Fade out video
       video.classList.remove('active');
       video.pause();
@@ -876,7 +884,7 @@ function initToppersPage() {
 // 18. Viewport Scroll Reveal animations
 function initScrollReveal() {
   const reveals = document.querySelectorAll('.fade-up-reveal');
-  
+
   if (reveals.length === 0) return;
 
   const observer = new IntersectionObserver((entries, observer) => {
@@ -899,7 +907,7 @@ function initScrollReveal() {
 function initFooterLinks() {
   const currentPath = window.location.pathname;
   const pageName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
-  
+
   const footerLinks = document.querySelectorAll('.footer-legal-link');
   footerLinks.forEach(link => {
     const href = link.getAttribute('href');
@@ -917,7 +925,7 @@ function initFooterLinks() {
 function initAchievementsPageFilters() {
   const filterBtns = document.querySelectorAll('.filter-ach-btn');
   const cards = document.querySelectorAll('.recent-ach-card');
-  
+
   if (filterBtns.length === 0 || cards.length === 0) return;
 
   filterBtns.forEach(btn => {
@@ -943,7 +951,7 @@ function initAchievementsPageFilters() {
 function initAchievementsToppersSlider() {
   const slides = document.querySelectorAll('.topper-slide-ach');
   const dots = document.querySelectorAll('.topper-dot-ach');
-  
+
   if (slides.length === 0) return;
 
   let currentSlide = 0;
@@ -952,7 +960,7 @@ function initAchievementsToppersSlider() {
   const showSlide = (n) => {
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
-    
+
     currentSlide = (n + slides.length) % slides.length;
     slides[currentSlide].classList.add('active');
     if (dots[currentSlide]) {
@@ -988,15 +996,15 @@ function initAchievementsToppersSlider() {
     if (sliderContainer) {
       sliderContainer.addEventListener('mouseenter', stopAutoSlide);
       sliderContainer.addEventListener('mouseleave', startAutoSlide);
-      
+
       let startX = 0;
       let endX = 0;
-      
+
       sliderContainer.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         stopAutoSlide();
       }, { passive: true });
-      
+
       sliderContainer.addEventListener('touchend', (e) => {
         endX = e.changedTouches[0].clientX;
         if (startX - endX > 50) {
@@ -1128,7 +1136,7 @@ function initNewsEventsPage() {
   const sectionUpcoming = document.getElementById('section-upcoming');
   const sectionCompleted = document.getElementById('section-completed');
   const scrollContainer = document.querySelector('.month-scroll-container');
-  
+
   if (!btnSwitchUpcoming && !btnSwitchCompleted && !scrollContainer) return;
 
   let currentTab = 'upcoming';
@@ -1156,7 +1164,7 @@ function initNewsEventsPage() {
       currentTab = 'completed';
       applyFilters();
     });
-    
+
     [btnSwitchUpcoming, btnSwitchCompleted].forEach(btn => {
       btn.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -1219,13 +1227,13 @@ function initNewsEventsPage() {
   function applyFilters() {
     searchQuery = searchInput ? searchInput.value.toLowerCase().trim() : '';
     selectedYear = yearFilter ? yearFilter.value : 'all';
-    
+
     const activeCategorySelect = (currentTab === 'upcoming') ? upcomingCategory : completedCategory;
     selectedCategory = activeCategorySelect ? activeCategorySelect.value : 'all';
 
     const cards = document.querySelectorAll(
-      currentTab === 'upcoming' 
-        ? '#upcoming-events-grid .event-card-fancy' 
+      currentTab === 'upcoming'
+        ? '#upcoming-events-grid .event-card-fancy'
         : '#completed-events-grid .event-card-fancy'
     );
 
@@ -1278,7 +1286,7 @@ function initNewsEventsPage() {
 }
 
 // Modal actions (declared globally so inline html onclick can invoke them)
-window.openDetailsModal = function(id) {
+window.openDetailsModal = function (id) {
   const eventData = EVENTS_DB[id];
   if (!eventData) return;
 
@@ -1317,7 +1325,7 @@ window.openDetailsModal = function(id) {
   }
 };
 
-window.closeDetailsModal = function() {
+window.closeDetailsModal = function () {
   const modal = document.getElementById('details-modal');
   if (modal) {
     modal.classList.remove('active');
@@ -1325,7 +1333,7 @@ window.closeDetailsModal = function() {
   }
 };
 
-window.openGalleryModal = function(id) {
+window.openGalleryModal = function (id) {
   const eventData = EVENTS_DB[id];
   if (!eventData || !eventData.images) return;
 
@@ -1352,13 +1360,13 @@ function updateSliderImage() {
   }
 }
 
-window.changeSlide = function(direction) {
+window.changeSlide = function (direction) {
   if (sliderImages.length === 0) return;
   currentSliderIndex = (currentSliderIndex + direction + sliderImages.length) % sliderImages.length;
   updateSliderImage();
 };
 
-window.closeGalleryModal = function() {
+window.closeGalleryModal = function () {
   const modal = document.getElementById('gallery-modal');
   if (modal) {
     modal.classList.remove('active');
