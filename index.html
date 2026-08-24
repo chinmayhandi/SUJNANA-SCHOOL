@@ -19,6 +19,70 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Style Sheet -->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Hero Slider Image Scaling Adjustments (Blur-Fit) ONLY for the first slide on mobile screens */
+    @media (max-width: 768px) {
+      .hero-slide.gate-slide {
+        background-size: 0 0 !important; /* Hide original background on mobile to prevent double rendering */
+        background-color: #000;
+      }
+
+      .hero-slide.gate-slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: inherit;
+        background-size: cover;
+        background-position: center;
+        filter: blur(10px) brightness(0.4);
+        z-index: 1;
+      }
+
+      .hero-slide.gate-slide::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: inherit;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 2;
+      }
+    }
+
+    /* Responsive slider nav adjustments for mobile to prevent button/dot overlap */
+    @media (max-width: 768px) {
+      .hero-slider-nav {
+        bottom: 30px !important;
+        gap: 12px !important;
+      }
+
+      .hero-nav-arrow {
+        width: 34px !important;
+        height: 34px !important;
+      }
+
+      .hero-slider-dots {
+        gap: 6px !important;
+      }
+
+      .hero-dot {
+        width: 8px !important;
+        height: 8px !important;
+      }
+
+      .hero-dot.active {
+        width: 20px !important;
+        border-radius: 4px !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -60,7 +124,6 @@
           <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About Us</a></li>
-            <li><a href="admissions.html" class="nav-link">Admissions</a></li>
             <li><a href="facilities.html" class="nav-link">Facilities</a></li>
             <li><a href="achievements.html" class="nav-link">Achievements</a></li>
             <li><a href="gallery.html" class="nav-link">Gallery</a></li>
@@ -89,7 +152,6 @@
     <div class="mobile-menu">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="about.html" class="mobile-link">About Us</a>
-      <a href="admissions.html" class="mobile-link">Admissions</a>
       <a href="facilities.html" class="mobile-link">Facilities</a>
       <a href="achievements.html" class="mobile-link">Achievements</a>
       <a href="gallery.html" class="mobile-link">Gallery</a>
@@ -114,6 +176,8 @@
 
     <!-- Background Image Slider -->
     <div class="hero-slider">
+      <div class="hero-slide gate-slide" style="background-image: url('images/hero center1.png');">
+      </div>
       <div class="hero-slide" style="background-image: url('images/IMG_0387.JPG');">
       </div>
       <div class="hero-slide" style="background-image: url('images/chairman.JPG');"></div>
@@ -740,50 +804,52 @@
 
         <div class="enquiry-form-wrapper">
           <form id="enquiryForm" novalidate>
+            <div id="enquiryFormStatus" class="form-status-alert" style="display: none; grid-column: 1 / -1;"></div>
             <div class="form-grid">
               <div class="form-group">
                 <label for="enqName" class="form-label">Parent's Name *</label>
-                <input type="text" id="enqName" class="form-input" placeholder="Enter parent's full name" required>
+                <input type="text" id="enqName" name="name" class="form-input" placeholder="Enter parent's full name" required>
                 <span class="error-message"></span>
               </div>
               <div class="form-group">
                 <label for="enqEmail" class="form-label">Email Address *</label>
-                <input type="email" id="enqEmail" class="form-input" placeholder="Enter email address" required>
+                <input type="email" id="enqEmail" name="email" class="form-input" placeholder="Enter email address" required>
                 <span class="error-message"></span>
               </div>
               <div class="form-group">
                 <label for="enqPhone" class="form-label">Phone Number *</label>
-                <input type="tel" id="enqPhone" class="form-input" placeholder="Enter 10-digit mobile no." required>
+                <input type="tel" id="enqPhone" name="phone" class="form-input" placeholder="Enter 10-digit mobile no." required>
                 <span class="error-message"></span>
               </div>
               <div class="form-group">
                 <label for="enqGrade" class="form-label">Admission For Grade/Class *</label>
-                <select id="enqGrade" class="form-input" required>
+                <select id="enqGrade" name="grade" class="form-input" required>
                   <option value="" disabled selected>Select class</option>
-                  <option value="pre-kg">Pre KG</option>
-                  <option value="lkg">LKG</option>
-                  <option value="ukg">UKG</option>
-                  <option value="class-1">Class 1</option>
-                  <option value="class-2">Class 2</option>
-                  <option value="class-3">Class 3</option>
-                  <option value="class-4">Class 4</option>
-                  <option value="class-5">Class 5</option>
-                  <option value="class-6">Class 6</option>
-                  <option value="class-7">Class 7</option>
-                  <option value="class-8">Class 8</option>
-                  <option value="class-9">Class 9</option>
-                  <option value="class-10">Class 10</option>
+                  <option value="Pre KG">Pre KG</option>
+                  <option value="LKG">LKG</option>
+                  <option value="UKG">UKG</option>
+                  <option value="Class 1">Class 1</option>
+                  <option value="Class 2">Class 2</option>
+                  <option value="Class 3">Class 3</option>
+                  <option value="Class 4">Class 4</option>
+                  <option value="Class 5">Class 5</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 9">Class 9</option>
+                  <option value="Class 10">Class 10</option>
                 </select>
                 <span class="error-message"></span>
               </div>
               <div class="form-group full-width">
                 <label for="enqMsg" class="form-label">Enquiry Message / Remarks</label>
-                <textarea id="enqMsg" class="form-input" rows="3"
+                <textarea id="enqMsg" name="message" class="form-input" rows="3"
                   placeholder="Enter questions or requirements..."></textarea>
               </div>
             </div>
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Submit Enquiry <i
-                class="fas fa-paper-plane"></i></button>
+            <button type="submit" id="enquirySubmitBtn" class="btn-primary" style="width: 100%; justify-content: center;">
+              <span>Submit Enquiry</span> <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+            </button>
           </form>
         </div>
       </div>
@@ -927,6 +993,7 @@
   </button>
 
   <!-- JS Scripts -->
+  <script src="js/config.js"></script>
   <script src="js/script.js"></script>
 </body>
 

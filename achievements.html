@@ -11,6 +11,89 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Style Sheet -->
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Reset the grid container layout for showcase since the left trophy card was removed */
+    .toppers-showcase-grid {
+      display: block !important;
+    }
+
+    /* Hide the static toppers grid on all devices */
+    .toppers-grid-ach {
+      display: none !important;
+    }
+
+    /* Enable slider on all devices and center it */
+    .toppers-mobile-slider-ach {
+      display: block !important;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Slider slide toggling */
+    .topper-slide-ach {
+      display: none;
+    }
+
+    .topper-slide-ach.active {
+      display: block;
+      animation: topperFadeIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes topperFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Stylings to make the slider card "little big" on desktop */
+    @media (min-width: 769px) {
+      .toppers-mobile-slider-ach {
+        max-width: 750px;
+      }
+
+      .toppers-mobile-slider-ach .topper-card-ach {
+        padding: 40px 50px;
+        gap: 35px;
+        border-radius: 16px;
+        border: 2px solid var(--border);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .toppers-mobile-slider-ach .topper-img-ach {
+        width: 130px;
+        height: 130px;
+        border-width: 4px;
+      }
+
+      .toppers-mobile-slider-ach .topper-name-ach {
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+      }
+
+      .toppers-mobile-slider-ach .topper-pct-ach {
+        font-size: 2.2rem;
+        margin-bottom: 4px;
+      }
+
+      .toppers-mobile-slider-ach .topper-year-ach {
+        font-size: 0.95rem;
+      }
+
+      .toppers-mobile-slider-ach .topper-badge-ach {
+        font-size: 0.9rem;
+        padding: 4px 14px;
+        top: 15px;
+        left: 15px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -27,8 +110,10 @@
         <div class="top-socials">
           <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/sujna_na/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/@sujnananationalpublicschoo7425" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/sujna_na/?hl=en" target="_blank" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@sujnananationalpublicschoo7425" target="_blank" aria-label="YouTube"><i
+              class="fab fa-youtube"></i></a>
         </div>
       </div>
     </div>
@@ -50,7 +135,6 @@
           <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About Us</a></li>
-            <li><a href="admissions.html" class="nav-link">Admissions</a></li>
             <li><a href="facilities.html" class="nav-link">Facilities</a></li>
             <li><a href="achievements.html" class="nav-link active">Achievements</a></li>
             <li><a href="gallery.html" class="nav-link">Gallery</a></li>
@@ -79,13 +163,13 @@
     <div class="mobile-menu">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="about.html" class="mobile-link">About Us</a>
-      <a href="admissions.html" class="mobile-link">Admissions</a>
       <a href="facilities.html" class="mobile-link">Facilities</a>
       <a href="achievements.html" class="mobile-link active">Achievements</a>
       <a href="gallery.html" class="mobile-link">Gallery</a>
       <a href="contact.html" class="mobile-link">Contact</a>
     </div>
-    <a href="contact.html" class="btn-yellow" style="width: 100%; justify-content: center; margin-top: 20px;">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+    <a href="contact.html" class="btn-yellow" style="width: 100%; justify-content: center; margin-top: 20px;">Enquiry
+      Now <i class="fas fa-paper-plane"></i></a>
   </div>
 
   <!-- Breadcrumb Hero Section -->
@@ -110,71 +194,22 @@
   <section class="sslc-highlight-section section-padding">
     <div class="container">
       <div class="toppers-showcase-grid">
-        
-        <!-- Left Trophy Card -->
-        <div class="sslc-trophy-card">
-          <i class="fas fa-trophy"></i>
-          <h3>SSLC Toppers 2024</h3>
-          <p>We take immense pride in our students who achieved outstanding academic results in the 2024 SSLC Board Examinations. Your hard work and dedication continue to inspire the school community.</p>
-          <a href="toppers.html" class="btn-yellow">View All Toppers <i class="fas fa-arrow-right"></i></a>
-        </div>
 
-        <!-- Right Grid of Topper Cards (Desktop View) -->
-        <div class="toppers-grid-ach">
-          
-          <div class="topper-card-ach">
-            <span class="topper-badge-ach">Rank 1</span>
-            <img src="images/topper-1.png" alt="Haripriya Parvatikar" class="topper-img-ach">
-            <div class="topper-info-ach">
-              <span class="topper-name-ach">Haripriya Parvatikar</span>
-              <span class="topper-pct-ach">98.88%</span>
-              <span class="topper-year-ach">SSLC Board 2026</span>
-            </div>
-          </div>
+        <!-- Left Trophy Card removed as requested -->
 
-          <div class="topper-card-ach">
-            <span class="topper-badge-ach">Rank 2</span>
-            <img src="images/topper-2.png" alt="Rahul Kulkarni" class="topper-img-ach">
-            <div class="topper-info-ach">
-              <span class="topper-name-ach">Rahul Kulkarni</span>
-              <span class="topper-pct-ach">97.8%</span>
-              <span class="topper-year-ach">SSLC Board 2026</span>
-            </div>
-          </div>
-
-          <div class="topper-card-ach">
-            <span class="topper-badge-ach">Rank 3</span>
-            <img src="images/topper-3.png" alt="Likitha P" class="topper-img-ach">
-            <div class="topper-info-ach">
-              <span class="topper-name-ach">Likitha P</span>
-              <span class="topper-pct-ach">97.2%</span>
-              <span class="topper-year-ach">SSLC Board 2024</span>
-            </div>
-          </div>
-
-          <div class="topper-card-ach">
-            <span class="topper-badge-ach">Rank 4</span>
-            <img src="images/topper-4.png" alt="Soham K" class="topper-img-ach">
-            <div class="topper-info-ach">
-              <span class="topper-name-ach">Soham K</span>
-              <span class="topper-pct-ach">96.8%</span>
-              <span class="topper-year-ach">SSLC Board 2024</span>
-            </div>
-          </div>
-
-        </div>
+        <!-- Static grid removed, horizontal slider is active on all screens -->
 
         <!-- Mobile Slider of Topper Cards (Mobile View) -->
         <div class="toppers-mobile-slider-ach" style="padding-bottom: 50px;">
-          
+
           <div class="topper-slide-ach active">
             <div class="topper-card-ach">
               <span class="topper-badge-ach">Rank 1</span>
-              <img src="images/topper-1.jpg" alt="Ananya N" class="topper-img-ach">
+              <img src="images/topper-1.png" alt="Haripriya Parvatikar" class="topper-img-ach">
               <div class="topper-info-ach">
-                <span class="topper-name-ach">Ananya N</span>
-                <span class="topper-pct-ach">98.6%</span>
-                <span class="topper-year-ach">SSLC Board 2024</span>
+                <span class="topper-name-ach">Haripriya Parvatikar</span>
+                <span class="topper-pct-ach">98.88%</span>
+                <span class="topper-year-ach">SSLC Board 2025-26</span>
               </div>
             </div>
           </div>
@@ -182,11 +217,11 @@
           <div class="topper-slide-ach">
             <div class="topper-card-ach">
               <span class="topper-badge-ach">Rank 2</span>
-              <img src="images/topper-2.jpg" alt="Rohan M" class="topper-img-ach">
+              <img src="images/topper-2.png" alt="Anusha Mane" class="topper-img-ach">
               <div class="topper-info-ach">
-                <span class="topper-name-ach">Rohan M</span>
-                <span class="topper-pct-ach">97.8%</span>
-                <span class="topper-year-ach">SSLC Board 2024</span>
+                <span class="topper-name-ach">Anusha Mane</span>
+                <span class="topper-pct-ach">98.49%</span>
+                <span class="topper-year-ach">SSLC Board 2025-26</span>
               </div>
             </div>
           </div>
@@ -194,23 +229,35 @@
           <div class="topper-slide-ach">
             <div class="topper-card-ach">
               <span class="topper-badge-ach">Rank 3</span>
-              <img src="images/topper-3.jpg" alt="Likitha P" class="topper-img-ach">
+              <img src="images/topper-3.png" alt="Anany Yalawar" class="topper-img-ach">
               <div class="topper-info-ach">
-                <span class="topper-name-ach">Likitha P</span>
-                <span class="topper-pct-ach">97.2%</span>
-                <span class="topper-year-ach">SSLC Board 2024</span>
+                <span class="topper-name-ach">Anany Yalawar</span>
+                <span class="topper-pct-ach">97.28%</span>
+                <span class="topper-year-ach">SSLC Board 2025-26</span>
               </div>
             </div>
           </div>
 
           <div class="topper-slide-ach">
             <div class="topper-card-ach">
-              <span class="topper-badge-ach">Rank 4</span>
-              <img src="images/topper-4.jpg" alt="Soham K" class="topper-img-ach">
+              <span class="topper-badge-ach">Rank 5</span>
+              <img src="images/topper-4.png" alt="Anushree Ganachari" class="topper-img-ach">
               <div class="topper-info-ach">
-                <span class="topper-name-ach">Soham K</span>
-                <span class="topper-pct-ach">96.8%</span>
-                <span class="topper-year-ach">SSLC Board 2024</span>
+                <span class="topper-name-ach">Anushree Ganachari</span>
+                <span class="topper-pct-ach">95.20%</span>
+                <span class="topper-year-ach">SSLC Board 2025-26</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="topper-slide-ach">
+            <div class="topper-card-ach">
+              <span class="topper-badge-ach">Rank 5</span>
+              <img src="images/topper-5.png" alt="Wajiha Khaji" class="topper-img-ach">
+              <div class="topper-info-ach">
+                <span class="topper-name-ach">Wajiha Khaji</span>
+                <span class="topper-pct-ach">95.20%</span>
+                <span class="topper-year-ach">SSLC Board 2025-26</span>
               </div>
             </div>
           </div>
@@ -221,6 +268,7 @@
             <button class="slider-dot topper-dot-ach" aria-label="Topper Slide 2"></button>
             <button class="slider-dot topper-dot-ach" aria-label="Topper Slide 3"></button>
             <button class="slider-dot topper-dot-ach" aria-label="Topper Slide 4"></button>
+            <button class="slider-dot topper-dot-ach" aria-label="Topper Slide 5"></button>
           </div>
 
         </div>
@@ -232,43 +280,35 @@
   <!-- Our Achievements Section (Category Filter and Grid) -->
   <section class="achievements-section section-padding" style="background-color: var(--white);">
     <div class="container">
-      
+
       <div class="section-header text-center" style="margin-bottom: 30px;">
         <span class="section-subtitle">Excellence in Action</span>
         <h2 class="section-title">Our Recent Achievements</h2>
-        <p class="section-desc" style="max-width: 700px; margin: 10px auto 0;">From classrooms to state-level tournaments, our students strive for excellence and consistently make us proud.</p>
+        <p class="section-desc" style="max-width: 700px; margin: 10px auto 0;">From classrooms to state-level
+          tournaments, our students strive for excellence and consistently make us proud.</p>
       </div>
 
-      <!-- Filters Row -->
-      <div class="category-filters-wrapper">
-        <div class="category-filters">
-          <button class="filter-ach-btn active" data-filter="all">All Achievements</button>
-          <button class="filter-ach-btn" data-filter="academics">Academic Excellence</button>
-          <button class="filter-ach-btn" data-filter="sports">Sports Achievements</button>
-          <button class="filter-ach-btn" data-filter="co-curricular">Co-Curricular</button>
-          <button class="filter-ach-btn" data-filter="competitions">Competitions</button>
-          <button class="filter-ach-btn" data-filter="recognitions">Recognitions</button>
-        </div>
-      </div>
+      <!-- Filter buttons removed as requested -->
 
       <!-- Achievements Grid -->
       <div class="recent-ach-grid">
-        
+
         <!-- Card 1 -->
-        <div class="recent-ach-card" data-category="academics">
+        <a href="achievement-details.html" class="recent-ach-card" data-category="academics">
           <div class="recent-ach-img-wrapper">
             <div class="recent-ach-date-box">Dec 2024</div>
-            <img src="images/achievement-1.jpg" alt="Science Exhibition" class="recent-ach-img">
+            <img src="images/Achievement 1.jpeg" alt="Science Exhibition" class="recent-ach-img">
           </div>
           <div class="recent-ach-content">
             <span class="recent-ach-badge">Academic Excellence</span>
             <h3 class="recent-ach-title">State Level Science Exhibition 2024</h3>
-            <p class="recent-ach-desc">Our students secured the First Place at the State Level Science Exhibition with their innovative model on renewable energy microgrids, highlighting their technical acumen.</p>
+            <p class="recent-ach-desc">Our students secured the First Place at the State Level Science Exhibition with
+              their innovative model on renewable energy microgrids, highlighting their technical acumen.</p>
           </div>
-        </div>
+        </a>
 
         <!-- Card 2 -->
-        <div class="recent-ach-card" data-category="sports">
+        <a href="achievement-details.html" class="recent-ach-card" data-category="sports">
           <div class="recent-ach-img-wrapper">
             <div class="recent-ach-date-box">Nov 2024</div>
             <img src="images/achievement-2.jpg" alt="Football Tournament" class="recent-ach-img">
@@ -276,12 +316,13 @@
           <div class="recent-ach-content">
             <span class="recent-ach-badge">Sports Achievements</span>
             <h3 class="recent-ach-title">Inter-School Football Championship</h3>
-            <p class="recent-ach-desc">The SNPS Under-16 Football Team displayed exceptional teamwork and sportsmanship to lift the prestigious District Inter-School Football Championship trophy.</p>
+            <p class="recent-ach-desc">The SNPS Under-16 Football Team displayed exceptional teamwork and sportsmanship
+              to lift the prestigious District Inter-School Football Championship trophy.</p>
           </div>
-        </div>
+        </a>
 
         <!-- Card 3 -->
-        <div class="recent-ach-card" data-category="competitions">
+        <a href="achievement-details.html" class="recent-ach-card" data-category="competitions">
           <div class="recent-ach-img-wrapper">
             <div class="recent-ach-date-box">Oct 2024</div>
             <img src="images/achievement-3.jpg" alt="Essay Competition" class="recent-ach-img">
@@ -289,12 +330,13 @@
           <div class="recent-ach-content">
             <span class="recent-ach-badge">Competitions</span>
             <h3 class="recent-ach-title">District Level Essay Competition</h3>
-            <p class="recent-ach-desc">Pranav R of Grade 9 won the gold medal in the senior category at the District Literary Association's Essay Writing Competition on 'Sustainable Living'.</p>
+            <p class="recent-ach-desc">Pranav R of Grade 9 won the gold medal in the senior category at the District
+              Literary Association's Essay Writing Competition on 'Sustainable Living'.</p>
           </div>
-        </div>
+        </a>
 
         <!-- Card 4 -->
-        <div class="recent-ach-card" data-category="co-curricular">
+        <a href="achievement-details.html" class="recent-ach-card" data-category="co-curricular">
           <div class="recent-ach-img-wrapper">
             <div class="recent-ach-date-box">Sep 2024</div>
             <img src="images/achievement-4.jpg" alt="Annual Day Excellence" class="recent-ach-img">
@@ -302,12 +344,13 @@
           <div class="recent-ach-content">
             <span class="recent-ach-badge">Co-Curricular</span>
             <h3 class="recent-ach-title">Annual Day Excellence Award</h3>
-            <p class="recent-ach-desc">SNPS cultural troupe received the Best Choreography and Overall Performance honors at the Inter-District Cultural Integration Day festival.</p>
+            <p class="recent-ach-desc">SNPS cultural troupe received the Best Choreography and Overall Performance
+              honors at the Inter-District Cultural Integration Day festival.</p>
           </div>
-        </div>
+        </a>
 
         <!-- Card 5 -->
-        <div class="recent-ach-card" data-category="competitions">
+        <a href="achievement-details.html" class="recent-ach-card" data-category="competitions">
           <div class="recent-ach-img-wrapper">
             <div class="recent-ach-date-box">Aug 2024</div>
             <img src="images/gallery-2.jpg" alt="Quiz Winners" class="recent-ach-img">
@@ -315,12 +358,13 @@
           <div class="recent-ach-content">
             <span class="recent-ach-badge">Competitions</span>
             <h3 class="recent-ach-title">Quiz Competition Winners</h3>
-            <p class="recent-ach-desc">Our high school quiz team demonstrated exceptional knowledge across diverse topics to secure first place at the annual Rotary Club Quiz Bee.</p>
+            <p class="recent-ach-desc">Our high school quiz team demonstrated exceptional knowledge across diverse
+              topics to secure first place at the annual Rotary Club Quiz Bee.</p>
           </div>
-        </div>
+        </a>
 
         <!-- Card 6 -->
-        <div class="recent-ach-card" data-category="recognitions">
+        <a href="achievement-details.html" class="recent-ach-card" data-category="recognitions">
           <div class="recent-ach-img-wrapper">
             <div class="recent-ach-date-box">Jun 2024</div>
             <img src="images/gallery-1.jpg" alt="Best School Recognition" class="recent-ach-img">
@@ -328,9 +372,10 @@
           <div class="recent-ach-content">
             <span class="recent-ach-badge">Recognitions</span>
             <h3 class="recent-ach-title">Best School Recognition Award</h3>
-            <p class="recent-ach-desc">Sujnana National Public School was awarded the 'Outstanding School of the Region' citation for educational innovation and co-curricular integration.</p>
+            <p class="recent-ach-desc">Sujnana National Public School was awarded the 'Outstanding School of the Region'
+              citation for educational innovation and co-curricular integration.</p>
           </div>
-        </div>
+        </a>
 
       </div>
 
@@ -347,7 +392,7 @@
 
       <div class="awards-gallery-container">
         <div class="awards-gallery-strip">
-          
+
           <div class="awards-strip-item">
             <img src="images/gallery-4.jpg" alt="Award 1" class="awards-strip-img">
           </div>
@@ -374,7 +419,8 @@
     <div class="container">
       <div class="achievements-cta-card">
         <h2>Proud of Our Students' Success</h2>
-        <p>We continue to encourage every student to learn, grow, and shine in all spheres of education, sports, and life.</p>
+        <p>We continue to encourage every student to learn, grow, and shine in all spheres of education, sports, and
+          life.</p>
         <a href="gallery.html" class="btn-yellow">Explore Our Gallery <i class="fas fa-images"></i></a>
       </div>
     </div>
@@ -383,7 +429,7 @@
   <!-- Common Footer -->
   <footer class="footer">
     <div class="container footer-grid">
-      
+
       <!-- Column 1: School Info -->
       <div class="footer-brand-col">
         <div class="footer-logo">
@@ -393,26 +439,36 @@
             <h5>NATIONAL PUBLIC SCHOOL</h5>
           </div>
         </div>
-        <p class="footer-brand-desc">Managed by Shree Yalaguresh Education Trust (R). Dedicated to fostering scholastic competence and visual development in child-centric pathways.</p>
+        <p class="footer-brand-desc">Managed by Shree Yalaguresh Education Trust (R). Dedicated to fostering scholastic
+          competence and visual development in child-centric pathways.</p>
         <div class="footer-socials">
           <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/sujna_na/?hl=en" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.youtube.com/@sujnananationalpublicschoo7425" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
+          <a href="https://www.instagram.com/sujna_na/?hl=en" target="_blank" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@sujnananationalpublicschoo7425" target="_blank" aria-label="YouTube"><i
+              class="fab fa-youtube"></i></a>
+        </div>
       </div>
 
       <!-- Column 2: Quick Links -->
       <div>
         <h4 class="footer-col-title">Quick Links</h4>
         <ul class="footer-links">
-          <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Home</a></li>
-          <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> About Us</a></li>
-          <li><a href="admissions.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
-          <li><a href="facilities.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
-          <li><a href="achievements.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Achievements</a></li>
-          <li><a href="gallery.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Gallery</a></li>
-          <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Contact Us</a></li>
+          <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              About Us</a></li>
+          <li><a href="admissions.html"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
+          <li><a href="facilities.html"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
+          <li><a href="achievements.html"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Achievements</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              Contact Us</a></li>
         </ul>
       </div>
 
@@ -420,11 +476,16 @@
       <div>
         <h4 class="footer-col-title">Resources</h4>
         <ul class="footer-links">
-          <li><a href="admissions.html#process"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Admission Process</a></li>
-          <li><a href="about.html#principal"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Principal's Desk</a></li>
-          <li><a href="about.html#team"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Dedicated Staff</a></li>
-          <li><a href="gallery.html#photos"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Photo Album</a></li>
-          <li><a href="contact.html#map"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i> Google Location</a></li>
+          <li><a href="admissions.html#process"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Admission Process</a></li>
+          <li><a href="about.html#principal"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Principal's Desk</a></li>
+          <li><a href="about.html#team"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Dedicated Staff</a></li>
+          <li><a href="gallery.html#photos"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Photo Album</a></li>
+          <li><a href="contact.html#map"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Google Location</a></li>
         </ul>
       </div>
 
@@ -451,7 +512,8 @@
 
     <div class="footer-bottom">
       <div class="footer-bottom-flex">
-        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shree Yalaguresh Education Trust (R).</p>
+        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shree Yalaguresh Education Trust
+          (R).</p>
         <div class="footer-legal-links">
           <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
           <a href="terms.html" class="footer-legal-link">Terms & Conditions</a>

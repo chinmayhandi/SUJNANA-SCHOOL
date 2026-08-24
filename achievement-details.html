@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achievement Details | Sujnana National Public School</title>
+  <meta name="description"
+    content="View details and highlights of achievements at Sujnana National Public School.">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Style Sheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Page Specific CSS for Achievement Details -->
+  <style>
+    .achievement-details-section {
+      background-color: var(--light);
+    }
+
+    .achievement-title-area {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .achievement-category-badge {
+      display: inline-block;
+      background-color: rgba(0, 43, 102, 0.08);
+      color: var(--primary);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      border: 1px solid rgba(0, 43, 102, 0.12);
+    }
+
+    .achievement-detail-title {
+      color: var(--primary);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0 0 15px 0;
+    }
+
+    .achievement-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      padding-top: 15px;
+    }
+
+    .achievement-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .achievement-meta i {
+      color: var(--yellow);
+    }
+
+    /* Main Grid Layout */
+    .achievement-layout-grid {
+      display: grid;
+      grid-template-columns: 2.2fr 1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    /* Main Column Styles */
+    .achievement-main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .featured-image-box, 
+    .description-box, 
+    .gallery-box {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    /* Featured Image Placeholder */
+    .featured-image-box {
+      padding: 12px;
+    }
+
+    .featured-image-placeholder {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #eaeef6;
+      aspect-ratio: 16 / 9;
+      display: block;
+    }
+
+    .featured-image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.95;
+    }
+
+    .image-overlay-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 31, 77, 0.85);
+      color: var(--white);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Description */
+    .description-box h3 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .description-box h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--yellow);
+      border-radius: 2px;
+    }
+
+    .description-box p {
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .description-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .achievement-quote {
+      border-left: 4px solid var(--yellow);
+      background-color: var(--light);
+      padding: 20px 25px;
+      margin: 25px 0;
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--dark);
+    }
+
+    .achievement-quote cite {
+      display: block;
+      font-weight: 600;
+      font-style: normal;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Gallery Box */
+    .gallery-box h3 {
+      color: var(--primary);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .gallery-box h3::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--yellow);
+      border-radius: 2px;
+    }
+
+    .gallery-placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .gallery-placeholder-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 1px solid var(--border);
+      background-color: #eaeef6;
+    }
+
+    .gallery-placeholder-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-placeholder-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 43, 102, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .gallery-placeholder-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-overlay i {
+      color: var(--white);
+      font-size: 1.5rem;
+      transform: scale(0.8);
+      transition: var(--transition);
+    }
+
+    .gallery-placeholder-item:hover .gallery-item-overlay i {
+      transform: scale(1);
+    }
+
+    /* Sidebar Column Styles */
+    .achievement-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .achievement-info-card, 
+    .related-achievements-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .sidebar-card-title {
+      color: var(--primary);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--light);
+    }
+
+    .sidebar-card-title::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 40px;
+      height: 2px;
+      background-color: var(--yellow);
+    }
+
+    /* Info List */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .info-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background-color: rgba(244, 180, 0, 0.1);
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .info-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      color: var(--dark);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Related Achievements list */
+    .related-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .related-item {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .related-item-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      background-color: #eaeef6;
+    }
+
+    .related-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .related-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .related-item-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .related-item-info h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .related-item-info h4 a:hover {
+      color: var(--yellow);
+    }
+
+    .related-item-category {
+      font-size: 0.75rem;
+      color: var(--yellow);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Responsive Rules */
+    @media (max-width: 992px) {
+      .achievement-layout-grid {
+        grid-template-columns: 1.4fr 1fr;
+        gap: 20px;
+      }
+      
+      .achievement-detail-title {
+        font-size: 2.1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .achievement-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .achievement-title-area {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      
+      .achievement-detail-title {
+        font-size: 1.8rem;
+      }
+      
+      .featured-image-box, 
+      .description-box, 
+      .gallery-box {
+        padding: 20px;
+      }
+      
+      .gallery-placeholder-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-placeholder-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .achievement-meta {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Common Header -->
+  <header>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="container">
+        <div class="top-info">
+          <a href="mailto:sujnanaschool@gmail.com"><i class="far fa-envelope"></i> sujnanaschool@gmail.com</a>
+          <a href="tel:+919845985993"><i class="fas fa-phone-alt"></i> +91 98459 85993</a>
+        </div>
+        <div class="top-socials">
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/sujna_na/?hl=en" target="_blank" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@sujnananationalpublicschoo7425" target="_blank" aria-label="YouTube"><i
+              class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navbar -->
+    <div class="navbar-wrapper">
+      <div class="container">
+        <nav class="navbar">
+          <!-- Logo & Brand Info -->
+          <a href="index.html" class="logo-container">
+            <img src="images/logo.jpeg" alt="Sujnana National Public School Logo" class="logo-img">
+            <div class="logo-text">
+              <span class="trust-name">Shree Yalaguresh Education Trust (R)</span>
+              <span class="school-name">SUJNANA NATIONAL PUBLIC SCHOOL</span>
+            </div>
+          </a>
+
+          <!-- Navigation Menu -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="about.html" class="nav-link">About Us</a></li>
+            <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+            <li><a href="achievements.html" class="nav-link active">Achievements</a></li>
+            <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+
+          <!-- Enquiry Now CTA -->
+          <div class="nav-cta">
+            <a href="contact.html" class="btn-yellow">Enquiry Now <i class="fas fa-paper-plane"></i></a>
+          </div>
+
+          <!-- Hamburger Button for Mobile -->
+          <button class="hamburger" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-overlay"></div>
+  <div class="mobile-nav">
+    <div class="mobile-menu">
+      <a href="index.html" class="mobile-link">Home</a>
+      <a href="about.html" class="mobile-link">About Us</a>
+      <a href="facilities.html" class="mobile-link">Facilities</a>
+      <a href="achievements.html" class="mobile-link active">Achievements</a>
+      <a href="gallery.html" class="mobile-link">Gallery</a>
+      <a href="contact.html" class="mobile-link">Contact</a>
+    </div>
+    <a href="contact.html" class="btn-yellow" style="width: 100%; justify-content: center; margin-top: 20px;">Enquiry
+      Now <i class="fas fa-paper-plane"></i></a>
+  </div>
+
+  <!-- Breadcrumb Hero Section -->
+  <section class="breadcrumb-hero" style="background-image: url('images/hero-school.jpg');">
+    <div class="breadcrumb-hero-overlay"></div>
+    <div class="container">
+      <div class="breadcrumb-hero-left">
+        <h1 class="breadcrumb-hero-title">Achievement Details</h1>
+        <div class="breadcrumb-path">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+          <a href="achievements.html">Achievements</a>
+          <span class="breadcrumb-separator"><i class="fas fa-chevron-right"></i></span>
+          <span class="breadcrumb-current">Achievement Details</span>
+        </div>
+      </div>
+      <div class="breadcrumb-hero-right">
+        <i class="fas fa-trophy breadcrumb-hero-icon"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Achievement Details Section -->
+  <section class="achievement-details-section section-padding">
+    <div class="container">
+      
+      <!-- Achievement Title Area -->
+      <div class="achievement-title-area">
+        <span class="achievement-category-badge">Category Placeholder</span>
+        <h2 class="achievement-detail-title">Achievement Title Placeholder</h2>
+        <div class="achievement-meta">
+          <span><i class="far fa-calendar-alt"></i> Month Year Placeholder</span>
+          <span><i class="fas fa-map-marker-alt"></i> Venue/Level Placeholder</span>
+        </div>
+      </div>
+
+      <!-- Two Column Layout Grid -->
+      <div class="achievement-layout-grid">
+        
+        <!-- Main Content Column (Left Column) -->
+        <div class="achievement-main-content">
+          
+          <!-- Main Featured Image Placeholder -->
+          <div class="featured-image-box">
+            <div class="featured-image-placeholder">
+              <img src="images/Achievement 1.jpeg" alt="Featured Achievement Image Placeholder">
+              <div class="image-overlay-text">Featured Image Placeholder</div>
+            </div>
+          </div>
+
+          <!-- Achievement Description Placeholder -->
+          <div class="description-box">
+            <h3>Description & Event Highlights</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            
+            <blockquote class="achievement-quote">
+              "This section serves as a quote placeholder to highlight feedback or congratulatory notes from the principal, mentor, or student winner."
+              <cite>- Quote Source Placeholder</cite>
+            </blockquote>
+
+            <p>Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi.</p>
+          </div>
+
+          <!-- Photo Gallery Placeholder -->
+          <div class="gallery-box">
+            <h3>Event Photo Gallery</h3>
+            <div class="gallery-placeholder-grid">
+              <div class="gallery-placeholder-item">
+                <img src="images/Gallery/gallery 2.jpeg" alt="Gallery Placeholder 1">
+                <div class="gallery-item-overlay">
+                  <i class="fas fa-expand"></i>
+                </div>
+              </div>
+              <div class="gallery-placeholder-item">
+                <img src="images/Gallery/gallery 3.jpeg" alt="Gallery Placeholder 2">
+                <div class="gallery-item-overlay">
+                  <i class="fas fa-expand"></i>
+                </div>
+              </div>
+              <div class="gallery-placeholder-item">
+                <img src="images/Gallery/gallery 4.jpeg" alt="Gallery Placeholder 3">
+                <div class="gallery-item-overlay">
+                  <i class="fas fa-expand"></i>
+                </div>
+              </div>
+              <div class="gallery-placeholder-item">
+                <img src="images/Gallery/gallery 5.jpeg" alt="Gallery Placeholder 4">
+                <div class="gallery-item-overlay">
+                  <i class="fas fa-expand"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar Column (Right Column) -->
+        <div class="achievement-sidebar">
+          
+          <!-- Achievement Information Placeholder -->
+          <div class="achievement-info-card">
+            <h3 class="sidebar-card-title">Achievement Info</h3>
+            <ul class="info-list">
+              <li>
+                <div class="info-icon"><i class="fas fa-calendar-day"></i></div>
+                <div class="info-text">
+                  <span class="info-label">Date of Event</span>
+                  <span class="info-value">DD/MM/YYYY</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon"><i class="fas fa-tag"></i></div>
+                <div class="info-text">
+                  <span class="info-label">Category</span>
+                  <span class="info-value">Academic / Sports / Co-Curricular</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon"><i class="fas fa-users"></i></div>
+                <div class="info-text">
+                  <span class="info-label">Winners / Team</span>
+                  <span class="info-value">Student Name(s) / Team Class</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="info-text">
+                  <span class="info-label">Class / Grade</span>
+                  <span class="info-value">Grade Level Placeholder</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon"><i class="fas fa-award"></i></div>
+                <div class="info-text">
+                  <span class="info-label">Position / Award</span>
+                  <span class="info-value">1st Place / Gold Medalist</span>
+                </div>
+              </li>
+              <li>
+                <div class="info-icon"><i class="fas fa-university"></i></div>
+                <div class="info-text">
+                  <span class="info-label">Organized By</span>
+                  <span class="info-value">Organizing Body / School Name</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Related Achievements Placeholder -->
+          <div class="related-achievements-card">
+            <h3 class="sidebar-card-title">Related Achievements</h3>
+            <div class="related-items-list">
+              <div class="related-item">
+                <div class="related-item-img">
+                  <img src="images/Achievement 2.jpeg" alt="Related Achievement 1">
+                </div>
+                <div class="related-item-info">
+                  <span class="related-item-date">Nov 2024</span>
+                  <h4><a href="#">Related Achievement Title Placeholder</a></h4>
+                  <span class="related-item-category">Sports Achievements</span>
+                </div>
+              </div>
+              <div class="related-item">
+                <div class="related-item-img">
+                  <img src="images/Achievement 3.jpeg" alt="Related Achievement 2">
+                </div>
+                <div class="related-item-info">
+                  <span class="related-item-date">Oct 2024</span>
+                  <h4><a href="#">Related Achievement Title Placeholder</a></h4>
+                  <span class="related-item-category">Competitions</span>
+                </div>
+              </div>
+              <div class="related-item">
+                <div class="related-item-img">
+                  <img src="images/Achievement 4.jpeg" alt="Related Achievement 3">
+                </div>
+                <div class="related-item-info">
+                  <span class="related-item-date">Sep 2024</span>
+                  <h4><a href="#">Related Achievement Title Placeholder</a></h4>
+                  <span class="related-item-category">Co-Curricular</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Common Footer -->
+  <footer class="footer">
+    <div class="container footer-grid">
+
+      <!-- Column 1: School Info -->
+      <div class="footer-brand-col">
+        <div class="footer-logo">
+          <img src="images/logo.jpeg" alt="SNPS Logo" class="footer-logo-img">
+          <div class="footer-logo-text">
+            <h4>SUJNANA</h4>
+            <h5>NATIONAL PUBLIC SCHOOL</h5>
+          </div>
+        </div>
+        <p class="footer-brand-desc">Managed by Shree Yalaguresh Education Trust (R). Dedicated to fostering scholastic
+          competence and visual development in child-centric pathways.</p>
+        <div class="footer-socials">
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/sujna_na/?hl=en" target="_blank" aria-label="Instagram"><i
+              class="fab fa-instagram"></i></a>
+          <a href="https://www.youtube.com/@sujnananationalpublicschoo7425" target="_blank" aria-label="YouTube"><i
+              class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div>
+        <h4 class="footer-col-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              Home</a></li>
+          <li><a href="about.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              About Us</a></li>
+          <li><a href="admissions.html"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Admissions</a></li>
+          <li><a href="facilities.html"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Facilities</a></li>
+          <li><a href="achievements.html"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Achievements</a></li>
+          <li><a href="gallery.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              Gallery</a></li>
+          <li><a href="contact.html"><i class="fas fa-chevron-right" style="font-size: 0.75rem; margin-right: 8px;"></i>
+              Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Resources -->
+      <div>
+        <h4 class="footer-col-title">Resources</h4>
+        <ul class="footer-links">
+          <li><a href="admissions.html#process"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Admission Process</a></li>
+          <li><a href="about.html#principal"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Principal's Desk</a></li>
+          <li><a href="about.html#team"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Dedicated Staff</a></li>
+          <li><a href="gallery.html#photos"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Photo Album</a></li>
+          <li><a href="contact.html#map"><i class="fas fa-chevron-right"
+                style="font-size: 0.75rem; margin-right: 8px;"></i> Google Location</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact info -->
+      <div>
+        <h4 class="footer-col-title">School Contact</h4>
+        <div class="footer-contact-info">
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Sujnana National Public School campus, Muddebihal Road, Bagalkot District, Karnataka, India.</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>+91 98459 85993<br>+91 96327 65550</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="far fa-envelope"></i>
+            <span>sujnanaschool@gmail.com</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-flex">
+        <p>&copy; 2026 Sujnana National Public School. All Rights Reserved. Managed by Shree Yalaguresh Education Trust
+          (R).</p>
+        <div class="footer-legal-links">
+          <a href="privacy.html" class="footer-legal-link">Privacy Policy</a>
+          <a href="terms.html" class="footer-legal-link">Terms & Conditions</a>
+          <a href="sitemap.html" class="footer-legal-link">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Widget -->
+  <a href="https://wa.me/919845985993" class="whatsapp-float" target="_blank" aria-label="WhatsApp Contact">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" aria-label="Back to Top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

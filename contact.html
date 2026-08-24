@@ -51,7 +51,6 @@
           <ul class="nav-menu">
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="about.html" class="nav-link">About Us</a></li>
-            <li><a href="admissions.html" class="nav-link">Admissions</a></li>
             <li><a href="facilities.html" class="nav-link">Facilities</a></li>
             <li><a href="achievements.html" class="nav-link">Achievements</a></li>
             <li><a href="gallery.html" class="nav-link">Gallery</a></li>
@@ -80,7 +79,6 @@
     <div class="mobile-menu">
       <a href="index.html" class="mobile-link">Home</a>
       <a href="about.html" class="mobile-link">About Us</a>
-      <a href="admissions.html" class="mobile-link">Admissions</a>
       <a href="facilities.html" class="mobile-link">Facilities</a>
       <a href="achievements.html" class="mobile-link">Achievements</a>
       <a href="gallery.html" class="mobile-link">Gallery</a>
@@ -180,48 +178,51 @@
             respond to your email shortly.</p>
 
           <form id="contactForm" novalidate>
+            <div id="contactFormStatus" class="form-status-alert" style="display: none;"></div>
+
             <div class="form-group" style="margin-bottom: 20px;">
               <label for="contactName" class="form-label">Full Name *</label>
-              <input type="text" id="contactName" class="form-input" placeholder="Enter your full name" required>
+              <input type="text" id="contactName" name="name" class="form-input" placeholder="Enter your full name" required>
               <span class="error-message"></span>
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
               <label for="contactEmail" class="form-label">Email Address *</label>
-              <input type="email" id="contactEmail" class="form-input" placeholder="Enter email address" required>
+              <input type="email" id="contactEmail" name="email" class="form-input" placeholder="Enter email address" required>
               <span class="error-message"></span>
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
               <label for="contactPhone" class="form-label">Phone Number *</label>
-              <input type="tel" id="contactPhone" class="form-input" placeholder="Enter 10-digit mobile number"
+              <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="Enter 10-digit mobile number"
                 required>
               <span class="error-message"></span>
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
               <label for="contactSubject" class="form-label">Subject of message *</label>
-              <select id="contactSubject" class="form-input" required>
+              <select id="contactSubject" name="subject" class="form-input" required>
                 <option value="" disabled selected>Select subject</option>
-                <option value="admission">Admissions Enquiry</option>
-                <option value="fees">Fee Structures</option>
-                <option value="facilities">Campus Facilities</option>
-                <option value="syllabus">School Curriculum</option>
-                <option value="jobs">Job Openings / Career</option>
-                <option value="others">Others</option>
+                <option value="Admissions Enquiry">Admissions Enquiry</option>
+                <option value="Fee Structures">Fee Structures</option>
+                <option value="Campus Facilities">Campus Facilities</option>
+                <option value="School Curriculum">School Curriculum</option>
+                <option value="Job Openings / Career">Job Openings / Career</option>
+                <option value="Others">Others</option>
               </select>
               <span class="error-message"></span>
             </div>
 
             <div class="form-group" style="margin-bottom: 20px;">
               <label for="contactMessage" class="form-label">Message Details *</label>
-              <textarea id="contactMessage" class="form-input" rows="4" placeholder="Enter message details here..."
+              <textarea id="contactMessage" name="message" class="form-input" rows="4" placeholder="Enter message details here..."
                 required></textarea>
               <span class="error-message"></span>
             </div>
 
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Send Message <i
-                class="fas fa-paper-plane"></i></button>
+            <button type="submit" id="contactSubmitBtn" class="btn-primary" style="width: 100%; justify-content: center;">
+              <span>Send Message</span> <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+            </button>
           </form>
         </div>
 
@@ -372,6 +373,8 @@
     <i class="fas fa-chevron-up"></i>
   </button>
 
+  <!-- JS Scripts -->
+  <script src="js/config.js"></script>
   <script src="js/script.js"></script>
 </body>
 

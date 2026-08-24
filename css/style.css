@@ -256,6 +256,19 @@ header {
   color: var(--yellow);
 }
 
+.nav-link.disabled,
+.mobile-link.disabled {
+  opacity: 0.45;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  color: var(--text-muted) !important;
+}
+
+.nav-link.disabled::after,
+.mobile-link.disabled::after {
+  display: none !important;
+}
+
 /* Header CTAs */
 .nav-cta {
   display: flex;
@@ -1321,6 +1334,42 @@ header {
   color: #dc2626;
   margin-top: 4px;
   display: none;
+}
+
+.form-status-alert {
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  line-height: 1.4;
+  animation: formAlertFadeIn 0.3s ease-out;
+}
+
+@keyframes formAlertFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-status-alert.success {
+  background-color: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.form-status-alert.error {
+  background-color: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+.form-status-alert.info {
+  background-color: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
 }
 
 .enquiry-mobile-card {

@@ -143,7 +143,7 @@ function initNavbar() {
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === pageName) {
+    if (href === pageName && !link.classList.contains('disabled')) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
@@ -154,7 +154,7 @@ function initNavbar() {
   const mobileLinks = document.querySelectorAll('.mobile-link');
   mobileLinks.forEach(link => {
     const href = link.getAttribute('href');
-    if (href === pageName) {
+    if (href === pageName && !link.classList.contains('disabled')) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
@@ -374,7 +374,15 @@ function initVideoGallery() {
   // Video items are now written directly inside gallery.html for easy editing and adding new videos.
 }
 
-// 8. Contact Form and Enquiry Form validations
+// Google Apps Script Web App URL for Google Sheets Form Submissions (configured in .env / js/config.js)
+const getGoogleSheetUrl = () => {
+  if (typeof window !== 'undefined' && window.ENV && window.ENV.GOOGLE_SHEET_WEBAPP_URL && window.ENV.GOOGLE_SHEET_WEBAPP_URL !== "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+    return window.ENV.GOOGLE_SHEET_WEBAPP_URL.trim();
+  }
+  return "";
+};
+
+// 8. Contact Form and Enquiry Form validations & Google Sheets submission
 function initFormValidations() {
   // Common error validation function
   const validateField = (input, regex, errorMsg) => {
@@ -411,6 +419,8 @@ function initFormValidations() {
       const phoneInput = document.getElementById('contactPhone');
       const subjectInput = document.getElementById('contactSubject');
       const messageInput = document.getElementById('contactMessage');
+      const statusAlert = document.getElementById('contactFormStatus');
+      const submitBtn = document.getElementById('contactSubmitBtn') || contactForm.querySelector('button[type="submit"]');
 
       let isValid = true;
 
@@ -457,8 +467,63 @@ function initFormValidations() {
       }
 
       if (isValid) {
-        alert('Thank you! Your message has been sent successfully. We will get back to you shortly.');
-        contactForm.reset();
+        const showStatus = (type, text) => {
+          if (statusAlert) {
+            statusAlert.className = 'form-status-alert ' + type;
+            const icon = type === 'success' ? 'fa-check-circle' : (type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle');
+            statusAlert.innerHTML = `<i class="fas ${icon}"></i> <span>${text}</span>`;
+            statusAlert.style.display = 'flex';
+          } else {
+            alert(text);
+          }
+        };
+
+        const targetUrl = getGoogleSheetUrl();
+
+        if (!targetUrl) {
+          showStatus('info', 'Form is validated! Please add your Google Apps Script Web App URL in .env / js/config.js to send data to Google Sheets.');
+          return;
+        }
+
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Send Message';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `<span>Sending...</span> <i class="fas fa-spinner fa-spin" style="margin-left: 8px;"></i>`;
+        }
+        if (statusAlert) statusAlert.style.display = 'none';
+
+        const payload = {
+          formType: 'Contact Enquiry',
+          name: nameInput ? nameInput.value.trim() : '',
+          email: emailInput ? emailInput.value.trim() : '',
+          phone: phoneInput ? phoneInput.value.trim() : '',
+          subject: subjectInput ? subjectInput.value.trim() : '',
+          message: messageInput ? messageInput.value.trim() : '',
+          submittedAt: new Date().toLocaleString()
+        };
+
+        fetch(targetUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(() => {
+          showStatus('success', 'Thank you! Your message has been sent successfully. We will get back to you shortly.');
+          contactForm.reset();
+        })
+        .catch((err) => {
+          console.error('Error submitting form to Google Sheets:', err);
+          showStatus('error', 'Unable to submit your message at this time. Please try again or contact us directly.');
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }
+        });
       }
     });
   }
@@ -473,6 +538,9 @@ function initFormValidations() {
       const emailInput = document.getElementById('enqEmail');
       const phoneInput = document.getElementById('enqPhone');
       const gradeInput = document.getElementById('enqGrade');
+      const messageInput = document.getElementById('enqMsg');
+      const statusAlert = document.getElementById('enquiryFormStatus');
+      const submitBtn = document.getElementById('enquirySubmitBtn') || enquiryForm.querySelector('button[type="submit"]');
 
       let isValid = true;
 
@@ -503,8 +571,63 @@ function initFormValidations() {
       }
 
       if (isValid) {
-        alert('Admission Enquiry submitted successfully. Our admissions team will contact you.');
-        enquiryForm.reset();
+        const showStatus = (type, text) => {
+          if (statusAlert) {
+            statusAlert.className = 'form-status-alert ' + type;
+            const icon = type === 'success' ? 'fa-check-circle' : (type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle');
+            statusAlert.innerHTML = `<i class="fas ${icon}"></i> <span>${text}</span>`;
+            statusAlert.style.display = 'flex';
+          } else {
+            alert(text);
+          }
+        };
+
+        const targetUrl = getGoogleSheetUrl();
+
+        if (!targetUrl) {
+          showStatus('info', 'Admission Enquiry validated! Please configure your Google Apps Script Web App URL.');
+          return;
+        }
+
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Submit Enquiry';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `<span>Submitting...</span> <i class="fas fa-spinner fa-spin" style="margin-left: 8px;"></i>`;
+        }
+        if (statusAlert) statusAlert.style.display = 'none';
+
+        const payload = {
+          formType: 'Admission Enquiry',
+          name: nameInput ? nameInput.value.trim() : '',
+          email: emailInput ? emailInput.value.trim() : '',
+          phone: phoneInput ? phoneInput.value.trim() : '',
+          subject: gradeInput ? gradeInput.value.trim() : '',
+          message: messageInput ? messageInput.value.trim() : '',
+          submittedAt: new Date().toLocaleString()
+        };
+
+        fetch(targetUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        })
+        .then(() => {
+          showStatus('success', 'Admission Enquiry submitted successfully! Our admissions office will get in touch with you shortly.');
+          enquiryForm.reset();
+        })
+        .catch((err) => {
+          console.error('Error submitting enquiry to Google Sheets:', err);
+          showStatus('error', 'Unable to submit enquiry right now. Please try again or contact our office.');
+        })
+        .finally(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }
+        });
       }
     });
   }
